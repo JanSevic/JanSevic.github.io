@@ -53,15 +53,6 @@ interests:
   - Politics
 
 education:
-  - area: PhD Computer Science (AI Focus)
-    institution: Stanford University
-    date_start: 2015-09-01
-    date_end: 2019-06-30
-    summary: |
-      Thesis on _Scaling Laws for Neural Language Models_. Supervised by Prof. Andrew Ng. Published 5 papers in NeurIPS and ICML, with 2 best paper awards.
-    button:
-      text: 'Read Thesis'
-      url: 'https://example.com/thesis.pdf'
   - area: MS Computer Science
     institution: Faculty of Electrical Engineering of the Czech Technical University
     date_start: 2013-09-01
@@ -71,7 +62,7 @@ education:
   - area: BS Computer Science
     institution: Faculty of Electrical Engineering of the Czech Technical University
     date_start: 2019-06-01
-    date_end: 2022-06-31
+    date_end: 2022-06-30
     summary: |
       Open Informatics
       Minored in Mathematics.
@@ -147,3 +138,4 @@ awards:
       TODO
 ---
 
+Jan Ševic is a PhD student and researcher at the Department of Industrial Informatics at the Czech Technical University in Prague. His research, which previously focused on Quantum Structures, is now centered on improving the efficiency of industrial processes. His work has earned him notable recognition, including a third-place finish at the SVOČ competition and being named the Tech Talent of the Czech Republic for 2025. Currently, he teaches the Algorithms and Parallel Algorithms courses.

@@ -64,7 +64,7 @@ sections:
       title: Recent & Upcoming Talks
       filters:
         folders:
-          - events
+          - en/events
     design:
       view: card
   - block: collection

@@ -27,7 +27,7 @@ role: PhD Student
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
-  - name: IID CIIRC
+  - name: Industrial Informatics Department of the Czech Institute of Informatics, Robotics and Cybernetics
     url: https://iid.ciirc.cvut.cz/
 
 # Social network links

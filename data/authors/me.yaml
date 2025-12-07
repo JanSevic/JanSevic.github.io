@@ -86,18 +86,16 @@ skills:
   - name: Technical Skills
     items:
       - label: Python
-        level: 5
-      - label: Machine Learning
-        level: 5
-      - label: Cloud Computing
         level: 4
+      - label: Gurobi
+        level: 4
+      - label: C++
+        level: 3
   - name: Research & Communication
     items:
       - label: Academic Writing
-        level: 5
-      - label: Conference Presentations
         level: 4
-      - label: Grant Proposals
+      - label: Presentations
         level: 4
 
 languages:
@@ -115,12 +113,12 @@ awards:
   - title: Third place in the SVOČ competition
     url:
     date: '2025-05-27'
-    awarder: TODO
+    awarder:
     icon: hero/academic-cap
     summary:
   - title: Tech Talent of the Czech Republic for 2025
     url: https://techtalentroku.cz/
     date: '2025-09-30'
-    awarder: TODO
+    awarder:
     icon: hero/trophy
     summary:

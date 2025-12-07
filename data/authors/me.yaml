@@ -20,11 +20,11 @@ status:
 role: PhD Student & Researcher
 
 bio: |
-  Jan Ševic is a PhD student and researcher at the Department of Industrial Informatics at the 
-  Czech Technical University in Prague. His research, which previously focused on Quantum Structures, 
-  is now centered on improving the efficiency of industrial processes. His work has earned him notable 
+  I am a PhD student and a researcher at the Department of Industrial Informatics at the 
+  Czech Technical University in Prague. My research, which previously focused on Quantum Structures, 
+  is now centered on improving the efficiency of industrial processes. My work earned me some 
   recognition, including a third-place finish at the SVOČ competition and being named the Tech Talent 
-  of the Czech Republic for 2025. Currently, he teaches the Algorithms and Parallel Algorithms courses.
+  of the Czech Republic for 2025. Currently, I teach the Algorithms and Parallel Algorithms courses.
 
 affiliations:
   - name: Industrial Informatics Department of the Czech Institute of Informatics, Robotics and Cybernetics
@@ -63,7 +63,7 @@ education:
     date_end: 2024-05-10
     summary: |
       Exchange Stay
-  - degree: BS Computer Science
+  - degree: BSc Computer Science
     institution: Czech Technical University in Prague
     date_start: 2019-06-01
     date_end: 2022-06-30

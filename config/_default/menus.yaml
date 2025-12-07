@@ -4,6 +4,8 @@
   #   The weight parameter defines the order that the links will appear in.
 
 main:
-  - name: CV
+  - name: Home
     url: /
     weight: 10
+  - name: Curriculum Vitae
+    url: /curriculum_vitae

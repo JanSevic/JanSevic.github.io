@@ -1,0 +1,126 @@
+schema: hugoblox/author/v1
+
+slug: me
+
+is_owner: true
+
+name:
+  display: Ing. Jan Ševic
+  given: Jan
+  family: Ševic
+  alternate: ''  # Example: 王伟
+  pronunciation: ''  # Example: Wáng Wěi
+  pronouns: he/him
+
+postnominals: # PhD goes here after I get it
+
+status:
+  icon: #"☕️"
+
+role: PhD Student & Researcher
+
+bio: |
+  Jan Ševic is a PhD student and researcher at the Department of Industrial Informatics at the 
+  Czech Technical University in Prague. His research, which previously focused on Quantum Structures, 
+  is now centered on improving the efficiency of industrial processes. His work has earned him notable 
+  recognition, including a third-place finish at the SVOČ competition and being named the Tech Talent 
+  of the Czech Republic for 2025. Currently, he teaches the Algorithms and Parallel Algorithms courses.
+
+affiliations:
+  - name: Industrial Informatics Department of the Czech Institute of Informatics, Robotics and Cybernetics
+    url: https://iid.ciirc.cvut.cz/
+
+links:
+  - icon: at-symbol
+    url: 'mailto:sevicjan@cvut.cz'
+    label: E-mail Me
+  - icon: brands/x
+    url: https://twitter.com/Jan_Sevic
+  - icon: brands/github
+    url: https://github.com/JanSevic
+  - icon: brands/linkedin
+    url: https://www.linkedin.com/in/jan-%C5%A1evic/
+  - icon: academicons/google-scholar
+    url: https://scholar.google.com/citations?user=p8iF3LwAAAAJ&hl=cs
+  - icon: academicons/orcid
+    url: https://orcid.org/0009-0004-2313-7373
+
+interests:
+  - Combinatorial Optimization
+  - Algorithms
+  - Politics
+
+education:
+  - degree: MS Computer Science
+    institution: Czech Technical University in Prague
+    date_start: 2022-06-30
+    date_end: 2025-06-30
+    summary: |
+      Open Informatics - Artificial Intelligence
+  - degree: Exchange Stay
+    institution: Kansas State University
+    date_start: 2024-01-04
+    date_end: 2024-05-10
+    summary: |
+      Exchange Stay
+  - degree: BS Computer Science
+    institution: Czech Technical University in Prague
+    date_start: 2019-06-01
+    date_end: 2022-06-30
+    summary: |
+      Open Informatics - Artificial Intelligence and Computer Science, minored in Mathematics.
+
+experience:
+  - role: Researcher
+    org: Industrial Informatics Department of the Czech Institute of Informatics, Robotics and Cybernetics
+    start: 2025-07-01
+    end:
+    summary: |
+
+    button:
+      text: ''
+      url: 'https://www.ciirc.cvut.cz/'
+      icon: globe-alt
+
+skills:
+  - name: Technical Skills
+    items:
+      - label: Python
+        level: 5
+      - label: Machine Learning
+        level: 5
+      - label: Cloud Computing
+        level: 4
+  - name: Research & Communication
+    items:
+      - label: Academic Writing
+        level: 5
+      - label: Conference Presentations
+        level: 4
+      - label: Grant Proposals
+        level: 4
+
+languages:
+  - name: Czech
+    level: 5
+    label: Native
+  - name: English
+    level: 5
+    label: Native
+  - name: German
+    level: 1
+    label: Beginner
+
+awards:
+  - title: Third place in the SVOČ competition
+    url:
+    date: '2025-05-27'
+    awarder: TODO
+    icon: hero/academic-cap
+    summary:
+  - title: Tech Talent of the Czech Republic for 2025
+    url: https://techtalentroku.cz/
+    date: '2025-09-30'
+    awarder: TODO
+    icon: hero/trophy
+    summary:

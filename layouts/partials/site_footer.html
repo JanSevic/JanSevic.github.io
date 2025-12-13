@@ -24,6 +24,7 @@
     {{- $has_pro_license = gt (len $is_valid_format) 0 -}}
     <div>
         {{ $uuid_pattern }}
+        {{ (lower $license_key) }}
         {{ $is_valid_format }}
     </div>>
     {{- end -}}

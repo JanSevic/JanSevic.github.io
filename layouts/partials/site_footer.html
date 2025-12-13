@@ -19,7 +19,7 @@
 
     {{- if $license_key -}}
     {{/* Validate UUID v4 format */}}
-    {{- $uuid_pattern := "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" -}}
+    {{- $uuid_pattern := "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}" -}}
     {{- $is_valid_format := findRE $uuid_pattern (lower $license_key) -}}
     {{- $has_pro_license = gt (len $is_valid_format) 0 -}}
     <div>

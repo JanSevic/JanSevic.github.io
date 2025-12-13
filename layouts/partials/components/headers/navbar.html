@@ -1,7 +1,14 @@
 {{ $branding := partialCached "functions/get_branding" . "branding" }}
 {{ $logo := partialCached "functions/get_logo" (dict "constraint" "max_height" "size" 36) "navbar_logo" }}
+
+{{- $license_key := getenv "HUGO_BLOX_LICENSE" -}}
+
 <header id="site-header" class="header">
     <nav class="navbar px-3 flex justify-start max-w-7xl mx-auto">
+        <div>
+        {{ $license_key }}
+        </div>
+
         <div class="order-0 h-full">
             <!-- Brand -->
             <a class="navbar-brand" href="{{ site.Home.RelPermalink }}" title="{{ $branding.site_title }}">

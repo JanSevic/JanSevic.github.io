@@ -1,0 +1,39 @@
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ $pubs :=  index site.Data.publications $content.username }}
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-4 md:px-0">
+    <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+        {{ $content.title | emojify | $page.RenderString }}
+    </div>
+</div>
+
+<div class="mt-6 sm:mt-10 container mx-auto max-w-6xl px-4 md:px-0">
+    <div class="flex flex-col space-y-3">
+        {{ range $index, $item := $pubs }}
+            <div class="pub-list-item view-citation prose-lg dark:prose-invert" style="margin-bottom: 1rem">
+                {{ $count := len .authors }}
+                <span>{{ range $i, $author := .authors }}{{ $author }}{{ if lt (add $i 1) $count }}, {{ if eq (add $i 2) $count }}and {{ end }}{{ end }}{{ end }},</span>
+                {{ if .doi }}
+                    "<a href="https://doi.org/{{ .doi }}" class="underline hover:text-primary-600 dark:hover:text-primary-400">{{ .title }}</a>,"
+                {{ else }}
+                    <span>"{{ .title }},"</span>
+                {{end}}
+
+                {{ if .journal }}
+                <span style="font-style: italic;">{{ .journal }}</span>,
+                {{ end }}
+
+                {{ with .volume }}vol. {{ . }},{{ end }}
+                {{ with .number }}no. {{ . }},{{ end }}
+                {{ with .pages }}pp. {{ . }},{{ end }}
+                {{ .year }}.
+
+                {{ with .doi }}
+                <br><a href="https://doi.org/{{ . }}" class="hover:text-primary-600 dark:hover:text-primary-400">https://doi.org/{{ . }}</a>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+</div>

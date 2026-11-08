@@ -24,7 +24,7 @@ const temata = (await getCollection('temata')).sort((a, b) => a.data.order - b.d
           <a href="#o-mne">O mně ↓</a>
         </div>
       </div>
-      <Image src={portret} alt={site.name} class="hero__portrait in d2" width={400} loading="eager" />
+      <Image src={portret} alt={site.name} class="hero__portrait in d2" widths={[400, 520, 800, 1040]} sizes="(max-width: 720px) 72vw, min(40vw, 520px)" loading="eager" />
     </div>
   </section>
 

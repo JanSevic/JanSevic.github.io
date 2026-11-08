@@ -3,10 +3,6 @@ title: Daně
 order: 2
 popis: "Stát jede na dluh. Peníze vybrat musíme. Otázka je, jak to udělat s co nejmenší škodou."
 uvod: "Každá daň něco brzdí: práci, podnikání nebo obchod. Některé víc, jiné méně. Proto nezáleží jen na tom, kolik se vybere, ale i z čeho."
-klicoveCislo:
-  hodnota: "přes 120 mld. Kč"
-  popis: "chybí každý rok v rozpočtu od chvíle, kdy se přestala danit superhrubá mzda, včetně úroků z dluhu"
-  zdroj: "IDEA při CERGE-EI, 2026"
 navrhy:
   - nazev: "Zdanit pozemky"
     text: "Zvýšit daň z nemovitostí, hlavně z pozemků, a počítat ji podle polohy a územního plánu. Stavbu ani práci majitele daň nezatíží. Každý má slevu na jednu nemovitost, a kdo nemá příjem, může platbu odložit."

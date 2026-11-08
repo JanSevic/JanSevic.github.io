@@ -1,6 +1,6 @@
 ---
 title: Daně
-order: 1
+order: 2
 popis: "[místo pro text: o co v tématu jde, 1–2 věty]"
 uvod: "[místo pro text: proč mi na tomto tématu záleží, 2–3 věty]"
 # Klíčové číslo je volitelné. Smaž celý blok, pokud téma nemá jedno výmluvné číslo.

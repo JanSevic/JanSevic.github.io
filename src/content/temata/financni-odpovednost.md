@@ -1,6 +1,6 @@
 ---
 title: Finanční odpovědnost
-order: 2
+order: 1
 popis: "[místo pro text: o co v tématu jde, 1–2 věty]"
 uvod: "[místo pro text: proč mi na tomto tématu záleží, 2–3 věty]"
 navrhy:

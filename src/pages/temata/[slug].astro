@@ -65,6 +65,7 @@ const k = tema.data.klicoveCislo;
               <div>
                 <h3>{n.nazev}</h3>
                 <p class="muted">{n.text}</p>
+                {n.odkaz && <a class="link-strong proposal__more" href={`/prispevky/${n.odkaz}/`}>Podrobně v příspěvku →</a>}
               </div>
             </div>
           ))}
@@ -114,6 +115,7 @@ const k = tema.data.klicoveCislo;
   .crumb { font-size: 15px; color: var(--ink-muted); }
   .problem { margin: 0; max-width: none; }
   .rows-plain { border-bottom: 1px solid var(--line); }
+  .proposal__more { display: inline-block; margin-top: 12px; }
   .date { flex: 0 0 180px; font-size: 15px; }
   .post { flex: 1 1 480px; display: flex; flex-direction: column; gap: 8px; }
   .post h3 { font-size: 30px; line-height: 1.15; }

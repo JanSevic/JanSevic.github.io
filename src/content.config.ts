@@ -15,7 +15,10 @@ const temata = defineCollection({
     klicoveCislo: z
       .object({ hodnota: z.string(), popis: z.string(), zdroj: z.string().optional() })
       .optional(),
-    navrhy: z.array(z.object({ nazev: z.string(), text: z.string() })).default([]),
+    /** odkaz = volitelné id příspěvku s podrobným rozborem návrhu. */
+    navrhy: z
+      .array(z.object({ nazev: z.string(), text: z.string(), odkaz: z.string().optional() }))
+      .default([]),
   }),
 });
 

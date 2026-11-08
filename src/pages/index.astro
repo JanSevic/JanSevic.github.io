@@ -10,22 +10,27 @@ import portret from '../assets/portret.png';
 const temata = (await getCollection('temata')).sort((a, b) => a.data.order - b.data.order);
 ---
 <Base header="none">
+  <!--
+    Úvodní obrazovka je mřížka:
+    - desktop a tablet: krajina přes celou plochu, jméno vlevo dole, portrét vpravo dole (nikdy pod sebou)
+    - mobil: krajina jen v horní části, portrét stojí na její spodní hraně, jméno a text pod ní na tmavém
+  -->
   <section class="hero" aria-label="Úvod">
-    <Image src={krajina} alt="Výhled do krajiny" class="hero__bg" widths={[800, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" />
-    <div class="hero__scrim" aria-hidden="true"></div>
-    <Header variant="photo" />
-    <div class="hero__body">
-      <div class="hero__text">
-        <span class="bar in" aria-hidden="true"></span>
-        <h1 class="in d1">{site.name}</h1>
-        <p class="in d2">{site.intro}</p>
-        <div class="hero__links in d3">
-          <a href="#temata">Na čem mi záleží ↓</a>
-          <a href="#o-mne">O mně ↓</a>
-        </div>
-      </div>
-      <Image src={portret} alt={site.name} class="hero__portrait in d2" widths={[400, 520, 800, 1040]} sizes="(max-width: 720px) 72vw, min(40vw, 520px)" loading="eager" />
+    <div class="hero__stage" aria-hidden="true">
+      <Image src={krajina} alt="" class="hero__bg" widths={[640, 960, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" />
+      <div class="hero__scrim"></div>
     </div>
+    <div class="hero__header"><Header variant="photo" /></div>
+    <div class="hero__text">
+      <span class="bar in" aria-hidden="true"></span>
+      <h1 class="in d1">{site.name}</h1>
+      <p class="in d2">{site.intro}</p>
+      <div class="hero__links in d3">
+        <a href="#temata">Na čem mi záleží ↓</a>
+        <a href="#o-mne">O mně ↓</a>
+      </div>
+    </div>
+    <Image src={portret} alt={site.name} class="hero__portrait in d2" widths={[400, 520, 800, 1040]} sizes="(max-width: 720px) 80vw, clamp(240px, 38vw, 520px)" loading="eager" />
   </section>
 
   <section id="temata" class="section">
@@ -67,23 +72,37 @@ const temata = (await getCollection('temata')).sort((a, b) => a.data.order - b.d
 </Base>
 
 <style>
-  .hero { position: relative; min-height: 880px; display: flex; flex-direction: column; justify-content: space-between; color: #fff; background: var(--dark); overflow: hidden; }
+  /* úvodní obrazovka: mřížka, viz komentář v šabloně */
+  .hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr; min-height: 880px; color: #fff; background: #101114; overflow: hidden; }
+  .hero__stage { grid-area: 1 / 1 / -1 / -1; position: relative; }
   .hero :global(.hero__bg) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
   .hero__scrim { position: absolute; inset: 0; background:
       linear-gradient(to top, rgba(16, 17, 20, .92) 0%, rgba(16, 17, 20, .5) 38%, rgba(16, 17, 20, 0) 62%),
       linear-gradient(to bottom, rgba(16, 17, 20, .5), rgba(16, 17, 20, 0) 20%); }
-  .hero__body { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; padding: 0 var(--gutter); }
-  .hero__text { flex: 1 1 520px; display: flex; flex-direction: column; gap: 22px; padding-bottom: clamp(56px, 7vw, 96px); }
-  .hero .bar { background: var(--mark-on-dark); }
-  .hero h1 { font-size: clamp(88px, 12vw, 184px); line-height: .88; letter-spacing: -.01em; }
-  .hero__text p { max-width: 36ch; font-size: 22px; line-height: 1.5; color: #f0f2f6; }
-  .hero__links { display: flex; flex-wrap: wrap; gap: 32px; font-size: 17px; font-weight: 600; }
+  .hero__header { grid-area: 1 / 1 / 2 / -1; position: relative; z-index: 2; }
+  .hero__text { grid-area: 2 / 1 / 3 / 2; align-self: end; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22px; padding: 0 0 clamp(48px, 7vw, 96px) var(--gutter); min-width: 0; }
+  .hero h1 { font-size: clamp(72px, 11vw, 184px); line-height: .88; letter-spacing: -.01em; }
+  .hero__text p { max-width: 36ch; font-size: clamp(18px, 1.8vw, 22px); line-height: 1.5; color: #f0f2f6; }
+  .hero__links { display: flex; flex-wrap: wrap; gap: 12px 32px; font-size: 17px; font-weight: 600; }
   .hero__links a { color: var(--accent-on-dark); }
-  .hero :global(.hero__portrait) { flex: 0 0 auto; width: min(40vw, 520px); margin-right: clamp(0px, 3vw, 48px); filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .35)); }
+  .hero .bar { background: var(--mark-on-dark); }
+  .hero :global(.hero__portrait) { grid-area: 2 / 2 / 3 / 3; align-self: end; position: relative; z-index: 1; width: clamp(240px, 38vw, 520px); margin: 0 max(var(--gutter), 3vw) 0 clamp(16px, 3vw, 32px); filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .35)); }
+
+  /* tablet na výšku: nižší úvodní obrazovka */
+  @media (max-width: 1024px) {
+    .hero { min-height: 720px; }
+  }
+
+  /* mobil: krajina nahoře, portrét stojí na její spodní hraně, text pod ní */
   @media (max-width: 720px) {
-    .hero { min-height: 0; }
-    .hero :global(.hero__portrait) { width: 72vw; margin: 0 auto; order: -1; }
-    .hero__text { padding-bottom: 48px; }
+    .hero { grid-template-columns: 1fr; grid-template-rows: auto auto auto; min-height: 0; }
+    .hero__stage { grid-area: 1 / 1 / 3 / 2; }
+    .hero__scrim { background:
+        linear-gradient(to top, rgba(16, 17, 20, 1) 0%, rgba(16, 17, 20, .55) 14%, rgba(16, 17, 20, 0) 40%),
+        linear-gradient(to bottom, rgba(16, 17, 20, .55), rgba(16, 17, 20, 0) 30%); }
+    .hero :global(.hero__portrait) { grid-area: 2 / 1 / 3 / 2; justify-self: center; width: min(78vw, 400px); margin: 32px 0 0; }
+    .hero__text { grid-area: 3 / 1 / 4 / 2; padding: 20px var(--gutter) 56px; }
+    .hero h1 { font-size: clamp(60px, 17vw, 88px); }
   }
   .about { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(40px, 6vw, 96px); }
   .about__text { flex: 1 1 460px; display: flex; flex-direction: column; gap: 24px; }

@@ -1,0 +1,31 @@
+---
+import { nav, site } from '../site';
+interface Props {
+  active?: string;
+  /** 'photo' = bílý text přes fotku na úvodní obrazovce */
+  variant?: 'light' | 'photo';
+}
+const { active, variant = 'light' } = Astro.props;
+---
+<header class:list={['site-header', `site-header--${variant}`]}>
+  <a class="site-header__name" href="/">{site.name}</a>
+  <nav aria-label="Hlavní menu">
+    {nav.map((item) => (
+      <a href={item.href} aria-current={active === item.label ? 'page' : undefined}>{item.label}</a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .site-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px 24px; padding: 26px var(--gutter); }
+  .site-header--light { border-bottom: 1px solid var(--line); }
+  .site-header--photo { position: relative; z-index: 2; }
+  .site-header__name { font-family: var(--font-display); font-weight: 600; font-size: 30px; line-height: 1; color: var(--ink); text-decoration: none; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 17px; font-weight: 500; }
+  nav a { color: var(--ink); text-decoration: none; padding-bottom: 6px; border-bottom: 3px solid transparent; }
+  nav a:hover { text-decoration: underline; }
+  nav a[aria-current='page'] { border-bottom-color: var(--mark); }
+  .site-header--photo a { color: #fff; }
+  .site-header--photo nav a { opacity: .92; }
+  .site-header--photo nav a:hover { opacity: 1; }
+</style>

@@ -1,0 +1,16 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import { formatDate } from '../site';
+
+interface Props { post: CollectionEntry<'prispevky'>; }
+const { post } = Astro.props;
+const tema = await getEntry(post.data.tema);
+---
+<a href={`/prispevky/${post.id}/`} class="post-card reveal">
+  {post.data.obrazek && <Image src={post.data.obrazek} alt="" widths={[400, 800]} sizes="(min-width: 1100px) 380px, 100vw" />}
+  <div class="meta"><span class="tema">{tema?.data.title}</span><time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time></div>
+  <h3>{post.data.title}</h3>
+  <p class="muted">{post.data.perex}</p>
+</a>

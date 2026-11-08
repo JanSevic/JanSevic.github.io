@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Stránka nenalezena">
+  <section class="section nf">
+    <div class="wrap">
+      <span class="bar in" aria-hidden="true"></span>
+      <span class="code in" aria-hidden="true">404</span>
+      <h1 class="in d1">Tahle stránka tu není</h1>
+      <p class="lead in d2">Možná se přesunula, nebo je v odkazu překlep. Zkuste některou z těchto stránek:</p>
+      <nav class="chips in d2" aria-label="Rozcestník">
+        <a class="chip" href="/">Úvod</a>
+        <a class="chip" href="/temata/">Témata</a>
+        <a class="chip" href="/prispevky/">Příspěvky</a>
+        <a class="chip" href="/o-mne/">O mně</a>
+      </nav>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { min-height: 60vh; display: flex; align-items: center; }
+  .nf .wrap { width: 100%; display: flex; flex-direction: column; gap: 26px; }
+  .code { font-family: var(--font-display); font-weight: 600; font-size: clamp(140px, 22vw, 320px); line-height: .8; color: var(--line); }
+  h1 { font-size: clamp(44px, 5vw, 72px); line-height: 1; }
+</style>

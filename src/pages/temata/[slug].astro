@@ -1,0 +1,123 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate } from '../../site';
+
+export async function getStaticPaths() {
+  const temata = (await getCollection('temata')).sort((a, b) => a.data.order - b.data.order);
+  return temata.map((tema) => ({ params: { slug: tema.id }, props: { tema, others: temata.filter((t) => t.id !== tema.id) } }));
+}
+
+const { tema, others } = Astro.props;
+const { Content } = await render(tema);
+const posts = (await getCollection('prispevky', ({ data }) => !data.draft && data.tema.id === tema.id))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const k = tema.data.klicoveCislo;
+---
+<Base title={tema.data.title} description={tema.data.popis} active="Témata">
+  <section class="page-head">
+    <div class="wrap head">
+      <div class="head__text">
+        <p class="crumb in"><a href="/temata/">Témata</a> <span aria-hidden="true">/</span> {tema.data.title}</p>
+        <span class="bar in" aria-hidden="true"></span>
+        <h1 class="page-title in d1">{tema.data.title}</h1>
+        <p class="lead in d2">{tema.data.uvod}</p>
+        <nav class="anchors in d2" aria-label="Na této stránce">
+          <span>Na této stránce:</span>
+          <a href="#problem">V čem je problém</a>
+          {tema.data.navrhy.length > 0 && <a href="#navrhy">Co navrhuji</a>}
+          {posts.length > 0 && <a href="#prispevky">Příspěvky</a>}
+        </nav>
+      </div>
+      {k && (
+        <aside class="keynum in d2" aria-label="Klíčové číslo">
+          <span class="label muted-label">Klíčové číslo</span>
+          <span class="keynum__value">{k.hodnota}</span>
+          <p class="muted">{k.popis}{k.zdroj && <> · Zdroj: {k.zdroj}</>}</p>
+        </aside>
+      )}
+    </div>
+  </section>
+
+  <section id="problem" class="section">
+    <div class="wrap split">
+      <div class="split__side reveal">
+        <span class="label">Výchozí stav</span>
+        <h2 class="h2-sub">V čem je problém</h2>
+      </div>
+      <div class="split__main prose problem">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  {tema.data.navrhy.length > 0 && (
+    <section id="navrhy" class="section" style="padding-top: 0">
+      <div class="wrap split">
+        <div class="split__side reveal">
+          <span class="label">Řešení</span>
+          <h2 class="h2-sub">Co navrhuji</h2>
+        </div>
+        <div class="split__main rows-plain">
+          {tema.data.navrhy.map((n, i) => (
+            <div class="proposal reveal">
+              <span class="proposal__num">{i + 1}</span>
+              <div>
+                <h3>{n.nazev}</h3>
+                <p class="muted">{n.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {posts.length > 0 && (
+    <section id="prispevky" class="section section--sunken">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><h2 class="h2-sub">Příspěvky k tématu</h2></div>
+          <a class="link-strong" href="/prispevky/">Všechny příspěvky →</a>
+        </div>
+        <div class="rows">
+          {posts.map((p) => (
+            <a href={`/prispevky/${p.id}/`} class="row reveal">
+              <time class="date muted" datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
+              <span class="post">
+                <h3>{p.data.title}</h3>
+                <span class="muted">{p.data.perex}</span>
+              </span>
+              <span class="arr" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--tight">
+    <div class="wrap others reveal">
+      <span class="others__title">Další témata</span>
+      <div class="chips">
+        {others.map((t) => <a class="chip" href={`/temata/${t.id}/`}>{t.data.title}</a>)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head { flex-direction: row !important; flex-wrap: wrap; align-items: flex-end; gap: clamp(40px, 6vw, 88px) !important; }
+  .head__text { flex: 1.6 1 520px; display: flex; flex-direction: column; gap: 26px; }
+  .keynum { flex: 1 1 320px; }
+  .muted-label { color: var(--ink-muted); }
+  .crumb { font-size: 15px; color: var(--ink-muted); }
+  .problem { margin: 0; max-width: none; }
+  .rows-plain { border-bottom: 1px solid var(--line); }
+  .date { flex: 0 0 180px; font-size: 15px; }
+  .post { flex: 1 1 480px; display: flex; flex-direction: column; gap: 8px; }
+  .post h3 { font-size: 30px; line-height: 1.15; }
+  .arr { font-size: 24px; }
+  .others { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; }
+  .others__title { font-family: var(--font-display); font-weight: 600; font-size: 30px; }
+</style>

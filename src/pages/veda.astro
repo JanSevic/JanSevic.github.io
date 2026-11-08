@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { veda } from '../data/veda';
+
+const typLabel = { casopis: 'Časopis', konference: 'Konference', ostatni: 'Ostatní' } as const;
+const publikace = (await getCollection('publikace')).sort((a, b) => b.data.year - a.data.year);
+const vybrane = publikace.filter((p) => p.data.vybrana).slice(0, 6);
+const scholar = veda.profily.find((p) => p.label === 'Google Scholar');
+---
+<Base title="Věda" description="Výzkum, publikace a výuka Jana Ševice." active="Věda">
+  <PageHead title="Věda" lead={veda.uvod}>
+    <div class="anchors in d2">
+      {veda.profily.map((p) => <a href={p.url}>{p.label}</a>)}
+    </div>
+    <nav class="anchors in d2" aria-label="Na této stránce">
+      <span>Na této stránce:</span>
+      <a href="#vyzkum">Výzkum</a><a href="#publikace">Publikace</a><a href="#vyuka">Výuka</a>
+    </nav>
+  </PageHead>
+
+  <section id="vyzkum" class="section">
+    <div class="wrap">
+      <div class="section-head reveal"><div><span class="label">Výzkum</span><h2 class="h2-sub">Čemu se věnuji</h2></div></div>
+      <div class="grid-3">
+        {veda.oblasti.map((o) => (
+          <div class="area reveal"><h3>{o.nazev}</h3><p class="muted">{o.popis}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="publikace" class="section section--sunken">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><span class="label">Publikace</span><h2 class="h2-sub">Vybrané publikace</h2></div>
+        {scholar && <a class="link-strong" href={scholar.url}>Všechny publikace (Google Scholar) →</a>}
+      </div>
+      <div class="pubs">
+        {vybrane.map((p) => (
+          <article class="pub reveal">
+            <span class="label">{typLabel[p.data.type]} · {p.data.year}</span>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.authors.map((a, i) => <>{i > 0 && ', '}{a === 'Jan Ševic' ? <strong>{a}</strong> : a}</>)}</p>
+            <p class="muted"><em>{p.data.venue}</em>{p.data.volume && <>, {p.data.volume}</>}{p.data.number && <>({p.data.number})</>}{p.data.pages && <>, {p.data.pages}</>}</p>
+            <div class="pub__links">
+              {p.data.doi && <a href={`https://doi.org/${p.data.doi}`}>DOI</a>}
+              {p.data.pdf && <a href={p.data.pdf}>PDF</a>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="vyuka" class="section">
+    <div class="wrap">
+      <div class="section-head reveal"><div><span class="label">Výuka</span><h2 class="h2-sub">Předměty</h2></div></div>
+      <div class="grid-3 courses">
+        {veda.predmety.map((c) => {
+          const Tag = c.url ? 'a' : 'div';
+          return (
+            <Tag href={c.url || undefined} class="course reveal">
+              <span class="course__code">{c.kod}</span>
+              <h3>{c.nazev}</h3>
+              <span class="muted small">{c.semestr} · {c.role}</span>
+              {c.url && <span class="more">Stránka předmětu →</span>}
+            </Tag>
+          );
+        })}
+      </div>
+
+      {veda.prace.length > 0 && (
+        <>
+          <h3 class="theses-title reveal">Vedení prací</h3>
+          <div class="rows">
+            {veda.prace.map((t) => (
+              <div class="row thesis reveal">
+                <span class="student">{t.student}</span>
+                <span class="tname">{t.nazev}</span>
+                <span class="muted small type">{t.typ} · {t.rok}</span>
+                <span class="pill">{t.stav}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .area { display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 2px solid var(--ink); }
+  .area h3 { font-size: 30px; line-height: 1.1; }
+  .pubs { border-bottom: 1px solid var(--line); }
+  .courses { gap: 24px; }
+  .small { font-size: 15px; }
+  .theses-title { font-size: 36px; margin: 64px 0 16px; }
+  .thesis { padding: 22px 0; }
+  .thesis:hover { padding-left: 0; background: none; }
+  .student { flex: 0 0 200px; font-weight: 600; }
+  .tname { flex: 1 1 360px; }
+  .type { flex: 0 0 180px; }
+</style>

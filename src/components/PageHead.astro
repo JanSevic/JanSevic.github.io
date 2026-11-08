@@ -1,0 +1,16 @@
+---
+// Záhlaví podstránky: proužek, velký nadpis, úvodní věta a volitelný obsah pod ní (odkazy, rozcestník).
+interface Props {
+  title: string;
+  lead?: string;
+}
+const { title, lead } = Astro.props;
+---
+<section class="page-head">
+  <div class="wrap">
+    <span class="bar in" aria-hidden="true"></span>
+    <h1 class="page-title in d1">{title}</h1>
+    {lead && <p class="lead in d2">{lead}</p>}
+    <slot />
+  </div>
+</section>

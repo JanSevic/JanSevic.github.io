@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+
+const temata = (await getCollection('temata')).sort((a, b) => a.data.order - b.data.order);
+const prispevky = await getCollection('prispevky', ({ data }) => !data.draft);
+const count = (id: string) => prispevky.filter((p) => p.data.tema.id === id).length;
+const plural = (n: number) => (n === 1 ? 'příspěvek' : n >= 2 && n <= 4 ? 'příspěvky' : 'příspěvků');
+---
+<Base title="Témata" active="Témata">
+  <PageHead title="Témata" lead="[místo pro text: proč právě tato témata, 1–2 věty]" />
+  <section class="section">
+    <div class="wrap rows">
+      {temata.map((t, i) => (
+        <a href={`/temata/${t.id}/`} class="row reveal">
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <h2>{t.data.title}</h2>
+          <span class="desc">
+            <span class="muted">{t.data.popis}</span>
+            <span class="muted small">{count(t.id)} {plural(count(t.id))}</span>
+          </span>
+          <span class="arr" aria-hidden="true">→</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .num { flex: 0 0 56px; font-family: var(--font-display); font-weight: 600; font-size: 26px; color: var(--accent); }
+  h2 { flex: 1 1 340px; font-size: clamp(40px, 4.4vw, 60px); line-height: 1; }
+  .desc { flex: 1 1 380px; display: flex; flex-direction: column; gap: 8px; }
+  .small { font-size: 15px; }
+  .arr { flex: 0 0 32px; font-size: 28px; }
+</style>

@@ -1,0 +1,93 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import { site } from '../site';
+import krajina from '../assets/krajina.jpg';
+import portret from '../assets/portret.png';
+
+const temata = (await getCollection('temata')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base header="none">
+  <section class="hero" aria-label="Úvod">
+    <Image src={krajina} alt="Výhled do krajiny" class="hero__bg" widths={[800, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" />
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <Header variant="photo" />
+    <div class="hero__body">
+      <div class="hero__text">
+        <span class="bar in" aria-hidden="true"></span>
+        <h1 class="in d1">{site.name}</h1>
+        <p class="in d2">{site.intro}</p>
+        <div class="hero__links in d3">
+          <a href="#temata">Na čem mi záleží ↓</a>
+          <a href="#o-mne">O mně ↓</a>
+        </div>
+      </div>
+      <Image src={portret} alt={site.name} class="hero__portrait in d2" width={400} loading="eager" />
+    </div>
+  </section>
+
+  <section id="temata" class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="bar bar--sm" aria-hidden="true"></span>
+          <h2 class="h2">Na čem mi záleží</h2>
+        </div>
+        <a class="link-strong" href="/temata/">Všechna témata →</a>
+      </div>
+      <div class="grid-2">
+        {temata.map((t, i) => (
+          <a href={`/temata/${t.id}/`} class="topic reveal">
+            <span class="topic__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{t.data.title}</h3>
+            <p>{t.data.popis}</p>
+            <span class="more">Více o tématu →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="o-mne" class="section section--sunken">
+    <div class="wrap about reveal">
+      <div class="about__text">
+        <h2 class="h2">O mně</h2>
+        <p class="about__story">{site.aboutShort}</p>
+        <div class="about__hobby">
+          <span class="label">Co mě baví</span>
+          <p class="muted">{site.hobbies}</p>
+        </div>
+        <a class="link-strong" href="/o-mne/">Více o mně →</a>
+      </div>
+      <div class="ph about__photo" data-label="Fotka 2 · další fotka mě · na výšku"></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { position: relative; min-height: 880px; display: flex; flex-direction: column; justify-content: space-between; color: #fff; background: var(--dark); overflow: hidden; }
+  .hero :global(.hero__bg) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .hero__scrim { position: absolute; inset: 0; background:
+      linear-gradient(to top, rgba(16, 17, 20, .92) 0%, rgba(16, 17, 20, .5) 38%, rgba(16, 17, 20, 0) 62%),
+      linear-gradient(to bottom, rgba(16, 17, 20, .5), rgba(16, 17, 20, 0) 20%); }
+  .hero__body { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; padding: 0 var(--gutter); }
+  .hero__text { flex: 1 1 520px; display: flex; flex-direction: column; gap: 22px; padding-bottom: clamp(56px, 7vw, 96px); }
+  .hero .bar { background: var(--mark-on-dark); }
+  .hero h1 { font-size: clamp(88px, 12vw, 184px); line-height: .88; letter-spacing: -.01em; }
+  .hero__text p { max-width: 36ch; font-size: 22px; line-height: 1.5; color: #f0f2f6; }
+  .hero__links { display: flex; flex-wrap: wrap; gap: 32px; font-size: 17px; font-weight: 600; }
+  .hero__links a { color: var(--accent-on-dark); }
+  .hero :global(.hero__portrait) { flex: 0 0 auto; width: min(40vw, 520px); margin-right: clamp(0px, 3vw, 48px); filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .35)); }
+  @media (max-width: 720px) {
+    .hero { min-height: 0; }
+    .hero :global(.hero__portrait) { width: 72vw; margin: 0 auto; order: -1; }
+    .hero__text { padding-bottom: 48px; }
+  }
+  .about { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(40px, 6vw, 96px); }
+  .about__text { flex: 1 1 460px; display: flex; flex-direction: column; gap: 24px; }
+  .about__story { font-size: 22px; line-height: 1.6; }
+  .about__hobby { display: flex; flex-direction: column; gap: 8px; padding-top: 20px; border-top: 1px solid var(--line); }
+  .about__photo { flex: 0 1 440px; aspect-ratio: 4 / 5; min-width: 280px; }
+</style>

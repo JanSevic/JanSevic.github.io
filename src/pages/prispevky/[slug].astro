@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate, readingTime, site } from '../../site';
+import portret from '../../assets/portret.png';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('prispevky', ({ data }) => !data.draft))
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const tema = await getEntry(post.data.tema);
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+const share = {
+  x: `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(post.data.title)}`,
+  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+};
+---
+<Base title={post.data.title} description={post.data.perex} active="Příspěvky">
+  <article class="article">
+    <header class="article__head">
+      <div class="meta in">
+        {tema && <a class="tag" href={`/temata/${tema.id}/`}>{tema.data.title}</a>}
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime(post.body)} min čtení</span>
+      </div>
+      <h1 class="in d1">{post.data.title}</h1>
+      <p class="lead in d2">{post.data.perex}</p>
+    </header>
+
+    {post.data.obrazek && (
+      <figure class="article__figure reveal">
+        <Image src={post.data.obrazek} alt={post.data.obrazekPopis ?? ''} widths={[760, 1040, 1600]} sizes="(min-width: 1100px) 1040px, 100vw" />
+        {post.data.obrazekPopis && <figcaption class="muted">{post.data.obrazekPopis}</figcaption>}
+      </figure>
+    )}
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <div class="share">
+      <span>Sdílet</span>
+      <div>
+        <a href={share.x}>X</a>
+        <a href={share.linkedin}>LinkedIn</a>
+        <button type="button" class="copy" data-url={url}>Kopírovat odkaz</button>
+      </div>
+    </div>
+
+    <aside class="author reveal" aria-label="O autorovi">
+      <Image src={portret} alt={site.name} width={208} class="author__img" />
+      <div>
+        <span class="author__name">{site.name}</span>
+        <p class="muted">{site.authorLine}</p>
+        <a class="link-strong" href="/o-mne/">Více o mně →</a>
+      </div>
+    </aside>
+
+    <nav class="next" aria-label="Další příspěvky">
+      {older ? <a href={`/prispevky/${older.id}/`} class="row"><span class="muted small">← Předchozí příspěvek</span><span class="title">{older.data.title}</span></a> : <span></span>}
+      {newer && <a href={`/prispevky/${newer.id}/`} class="row right"><span class="muted small">Další příspěvek →</span><span class="title">{newer.data.title}</span></a>}
+    </nav>
+  </article>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.url ?? location.href);
+        btn.textContent = 'Odkaz zkopírován';
+      } catch {
+        btn.textContent = 'Kopírování se nepovedlo';
+      }
+    });
+  });
+</script>
+
+<style>
+  .article { padding: clamp(56px, 7vw, 104px) var(--gutter) clamp(56px, 7vw, 96px); }
+  .article__head { max-width: var(--reading); margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+  .article__head .meta { align-items: center; gap: 12px 20px; }
+  h1 { font-size: clamp(48px, 6vw, 88px); line-height: 1.02; }
+  .article__head .lead { max-width: none; }
+  .article__figure { max-width: 1040px; margin: clamp(40px, 5vw, 64px) auto; display: flex; flex-direction: column; gap: 12px; }
+  .article__figure figcaption { font-size: 15px; }
+  .prose { margin-top: clamp(40px, 5vw, 64px); }
+  .share { max-width: var(--reading); margin: clamp(48px, 6vw, 72px) auto 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; border-block: 1px solid var(--line); font-size: 16px; }
+  .share > span { font-weight: 600; }
+  .share div { display: flex; flex-wrap: wrap; gap: 24px; }
+  .copy { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+  .author { max-width: var(--reading); margin: 40px auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 24px; padding: 28px; background: var(--surface-sunken); }
+  .author :global(.author__img) { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; object-position: center 15%; background: #fff; }
+  .author > div { flex: 1 1 320px; display: flex; flex-direction: column; gap: 6px; }
+  .author__name { font-family: var(--font-display); font-weight: 600; font-size: 26px; }
+  .next { max-width: 1040px; margin: clamp(56px, 7vw, 88px) auto 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+  .next .row { flex: 1 1 320px; flex-direction: column; align-items: flex-start; gap: 6px; padding: 20px 8px; border-top: 2px solid var(--ink); }
+  .next .right { align-items: flex-end; text-align: right; }
+  .small { font-size: 14px; }
+  .title { font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1.2; }
+</style>

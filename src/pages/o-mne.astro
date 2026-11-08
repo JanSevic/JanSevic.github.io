@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site';
+---
+<Base title="O mně" active="O mně">
+  <section class="page-head">
+    <div class="wrap head">
+      <div class="head__text">
+        <span class="bar in" aria-hidden="true"></span>
+        <h1 class="page-title in d1">O mně</h1>
+        <p class="intro in d2">[místo pro text: kdo jsem v jedné až dvou větách]</p>
+      </div>
+      <div class="ph head__photo in d1" data-label="Fotka 2 · další fotka mě · na výšku"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="prose">
+      <h2>Můj příběh</h2>
+      <p>[místo pro text: odkud jsem a jak jsem se dostal k tomu, co dělám – odstavec]</p>
+      <p>[místo pro text: co mě přivedlo k veřejným věcem – odstavec]</p>
+      <blockquote><p>[místo pro větu, která mě vystihuje]</p></blockquote>
+      <p>[místo pro text: co chci dělat dál – odstavec]</p>
+    </div>
+  </section>
+
+  <section class="section section--sunken">
+    <div class="prose reveal">
+      <span class="label">Mimo práci</span>
+      <h2 style="margin-top: 16px">Co mě baví</h2>
+      <p>{site.hobbies}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="prose reveal">
+      <h2 style="margin-top: 0">Napište mi</h2>
+      <p class="muted">[místo pro text: k čemu se mi můžete ozvat, 1 věta]</p>
+      <div class="rows contacts">
+        <a class="row" href={`mailto:${site.contact.email}`}><span class="c-name">E-mail</span><span class="muted">{site.contact.email} <span class="arr" aria-hidden="true">→</span></span></a>
+        <a class="row" href={site.contact.x.url}><span class="c-name">X</span><span class="muted">@Jan_Sevic <span class="arr" aria-hidden="true">→</span></span></a>
+        <a class="row" href={site.contact.linkedin.url}><span class="c-name">LinkedIn</span><span class="muted">profil <span class="arr" aria-hidden="true">→</span></span></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head { flex-direction: row !important; flex-wrap: wrap; align-items: center; gap: clamp(40px, 6vw, 96px) !important; }
+  .head__text { flex: 1.2 1 480px; display: flex; flex-direction: column; gap: 26px; }
+  .intro { max-width: 40ch; font-size: clamp(22px, 2.2vw, 26px); line-height: 1.45; }
+  .head__photo { flex: 1 1 380px; aspect-ratio: 4 / 5; max-width: 480px; }
+  .contacts { margin-top: 24px; }
+  .contacts .row { justify-content: space-between; padding: 22px 8px; }
+  .c-name { font-family: var(--font-display); font-weight: 600; font-size: 32px; }
+</style>

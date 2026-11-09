@@ -2,9 +2,17 @@
 title: "Proč daň z pozemků"
 date: 2026-11-08
 tema: dane
-perex: "Vyšší daň z pozemků zatíží méně ty, kdo teprve začínají, a navíc tlačí na to, aby se s prostorem zacházelo rozumně. Co od ní čekám, jak by fungovala a co na ní není dokonalé."
+perex: "Vyšší daň z pozemků zatíží méně ty, kdo teprve začínají, a navíc tlačí na to, aby se s prostorem zacházelo rozumně. Proč právě pozemky, co od daně čekám, jak by fungovala a co na ní není dokonalé."
 draft: false
 ---
+
+## Proč právě pozemky
+
+Většinu majetku vytvořil jeho majitel. Dům nebo byt postavil, opravuje ho a stará se o něj, a to danit nechci. Pozemky jsou ale jiné. Nikdo je nevyrobil a víc jich nikdy nebude. A nejde je nikam přesunout. Daň z příjmu odrazuje od práce, DPH od obchodu, ale daň z pozemku nikoho neodradí od toho, aby pozemky vyráběl, protože je nikdo nevyrábí.
+
+Pozemek, který někdo vlastní, už nemůže mít nikdo jiný. Část hodnoty pozemku sice vytváří majitel: upravená zahrada má jistě větší hodnotu než zanedbaná. Tuhle část danit nechci. Většinu hodnoty ale vytváří okolí. Přípojky vody, kanalizace a internetu, kvalita silnic, dostupnost škol, zdravotní péče a veřejné dopravy. To všechno zvyšuje hodnotu pozemku a nevytváří to jeho majitel. Řada těchto věcí navíc stojí nemalé peníze, které někdo platit musí: stavba silnic, stavba a provoz škol, provoz veřejné dopravy. Je tedy na místě, aby se tyto náklady platily z hodnoty, kterou pozemkům vytvářejí.
+
+Přesto daň z nemovitostí vybíráme v Česku méně než čtvrtinu průměru EU.
 
 ## Co si od toho slibuji
 
@@ -14,7 +22,7 @@ Má ještě jednu výhodu: tlačí na efektivní využití prostoru. Vezměme in
 
 ## Jak by daň fungovala
 
-Dnes se na dani z nemovitých věcí vybírá zhruba 24 miliard korun ročně. Cílem je vybírat touto daní přes 100 miliard. Celou díru po zrušení superhrubé mzdy to nezalepí. Zbytek je otázka výdajů, ke které se dostanu jindy.
+Dnes daň z nemovitých věcí vynáší jen nízké desítky miliard korun ročně. Cílem je zhruba stovka miliard. Celou díru po zrušení superhrubé mzdy to nezalepí. Zbytek je otázka výdajů, ke které se dostanu jindy.
 
 - Daň se nepočítá z hodnoty konkrétního pozemku, ale z cenových map pro danou lokalitu a typ pozemku podle územního plánu, za m². Ceny se aktualizují každý rok podle průměru několika let.
 - Stavby se daní jen malou částkou za m².

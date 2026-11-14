@@ -22,7 +22,7 @@ Má ještě jednu výhodu: tlačí na efektivní využití prostoru. Vezměme in
 
 ## Jak by daň fungovala
 
-Dnes daň z nemovitých věcí vynáší jen nízké desítky miliard korun ročně. Cílem je zhruba stovka miliard. Celou díru po zrušení superhrubé mzdy to nezalepí. Zbytek je otázka výdajů, ke které se dostanu jindy.
+Dnes daň z nemovitých věcí vynáší jen nízké desítky miliard korun ročně. Cílem je zhruba stovka miliard.
 
 - Daň se nepočítá z hodnoty konkrétního pozemku, ale z cenových map pro danou lokalitu a typ pozemku podle územního plánu, za m². Ceny se aktualizují každý rok podle průměru několika let.
 - Stavby se daní jen malou částkou za m².

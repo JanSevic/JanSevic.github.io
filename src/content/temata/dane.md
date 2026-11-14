@@ -1,7 +1,7 @@
 ---
 title: Daně
 order: 2
-popis: "Stát jede na dluh. Peníze vybrat musíme. Otázka je, jak to udělat s co nejmenší škodou."
+popis: "Nějaké peníze stát vybrat musí. Otázka je, jak to udělat s co nejmenší škodou."
 uvod: "Každá daň něco brzdí: práci, podnikání nebo obchod. Některé víc, jiné méně. Proto nezáleží jen na tom, kolik se vybere, ale i z čeho."
 navrhy:
   - nazev: "Zdanit pozemky"
@@ -9,17 +9,15 @@ navrhy:
     odkaz: proc-dan-z-pozemku
 ---
 
-### Jedeme na dluh
+### Práce je zdaněná hodně
 
 Před pár lety jsme přestali danit superhrubou mzdu. Sazba zůstala 15 %, ale počítá se z hrubé mzdy, ne z hrubé mzdy navýšené o odvody zaměstnavatele. Daň z práce tak ve skutečnosti klesla zhruba z 20 na 15 %.
 
-Byl to dobrý krok. Práci v Česku kromě daně zatěžují ještě sociální a zdravotní odvody, takže je zdaněná hodně. Ideálně bych zdanění práce snižoval dál a zvyšoval slevu na poplatníka. Problém je jinde: nikdo nevymyslel, čím chybějící peníze nahradit. Státu tak každý rok chybí [přes sto miliard korun](https://idea.cerge-ei.cz/files/2026_02_IDEA_PB_Neblahe_dedictvi_superhrube_mzdy.pdf). A protože díru látáme dluhem, platíme navíc ještě úroky.
-
-Dluh zatím vysoký nemáme, ale míříme k tomu. Západní státy sice dluží víc, ale samy to považují za problém. Nejsou pro nás příkladem, ale varováním.
+Byl to dobrý krok. Práci v Česku kromě daně zatěžují ještě sociální a zdravotní odvody, takže je zdaněná hodně. Ideálně bych zdanění práce snižoval dál a zvyšoval slevu na poplatníka. Nějaké peníze ale stát vybrat musí.
 
 ### Kde peníze vzít?
 
-Zdanění práce zpátky zvyšovat nechci. O výdajích je potřeba mluvit taky, ale o tom později. Peníze lze vybírat čtyřmi základními způsoby: daní na hlavu, daní z příjmu, daní ze spotřeby a daní z majetku. Do každé z těchto kategorií patří různé konkrétní daně. Podívejme se, co která forma dělá, co nás stojí a jaké má přednosti a vady.
+Zdanění práce zpátky zvyšovat nechci. Peníze lze vybírat čtyřmi základními způsoby: daní na hlavu, daní z příjmu, daní ze spotřeby a daní z majetku. Do každé z těchto kategorií patří různé konkrétní daně. Podívejme se, co která forma dělá, co nás stojí a jaké má přednosti a vady.
 
 **Daň na hlavu** je nejjednodušší: všichni zaplatí stejně. Dělník, který celý život vydělává podobně, to zvládne. Začínajícího podnikatele, který zatím nevydělává nic, ale zničí. A komu se hodně daří, pro toho je malá. Proto se dnes používá jen výjimečně, třeba u obecního poplatku za odpad.
 
@@ -31,4 +29,4 @@ Zdanění práce zpátky zvyšovat nechci. O výdajích je potřeba mluvit taky,
 
 ### Co z toho plyne
 
-Žádná daň není dokonalá a žádná nesmí nést všechno sama. Práci a podnikání chci zatěžovat co nejméně a DPH nesmí být vysoká. Peníze, které chybí, chci hledat tam, kde jejich vybírání škodí nejméně. Podle mě jsou to pozemky. Proč si to myslím a jak by to fungovalo, rozebírám v příspěvku [Proč daň z pozemků](/prispevky/proc-dan-z-pozemku/).
+Žádná daň není dokonalá a žádná nesmí nést všechno sama. Práci a podnikání chci zatěžovat co nejméně a DPH nesmí být vysoká. Víc bych proto vybíral tam, kde to škodí nejméně. Podle mě jsou to pozemky. Proč si to myslím a jak by to fungovalo, rozebírám v příspěvku [Proč daň z pozemků](/prispevky/proc-dan-z-pozemku/).

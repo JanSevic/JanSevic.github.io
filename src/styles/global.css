@@ -149,6 +149,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .prose table { width: 100%; border-collapse: collapse; font-size: 17px; line-height: 1.45; font-variant-numeric: tabular-nums; }
 .prose th, .prose td { padding: 10px 12px; border-bottom: 1px solid var(--line, rgba(127,127,127,.25)); vertical-align: top; }
 .prose thead th { font-weight: 600; border-bottom-width: 2px; }
+.prose th { text-align: left; }
+.prose .n { text-align: right; white-space: nowrap; }
+.prose .skupina th { padding-top: 22px; font-weight: 600; }
+.prose .skupina span { display: block; font-weight: 400; font-size: 15px; color: var(--ink-muted); }
 
 /* pohyb */
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }

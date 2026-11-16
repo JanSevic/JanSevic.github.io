@@ -32,14 +32,21 @@ Celkem by daň vybrala kolem 125 miliard korun ročně, zhruba o 100 miliard ví
 
 ## Kolik by kdo zaplatil
 
-| | dnes | po reformě | úspora ze superhrubé |
-|---|---:|---:|---:|
-| Praha 12, byt 70 m² | 2 018 Kč | ~36 000 Kč | ~77 000 Kč |
-| Praha 12, rodinný dům | 3 969 Kč | ~140 000 Kč | ~77 000 Kč |
-| Kralupy nad Vltavou, byt 70 m² | 957 Kč | ~16 300 Kč | ~69 000 Kč |
-| Kralupy nad Vltavou, rodinný dům | 1 882 Kč | ~36 000 Kč | ~69 000 Kč |
-| Most, byt 70 m² | 2 093 Kč | ~8 900 Kč | ~66 000 Kč |
-| Most, rodinný dům | 4 116 Kč | ~36 600 Kč | ~66 000 Kč |
+<table class="srovnani">
+<thead><tr><th></th><th class="n">dnes</th><th class="n">po reformě</th></tr></thead>
+<tbody><tr class="skupina"><th colspan="3">Praha 12 <span>úspora ze superhrubé ~77 000 Kč ročně</span></th></tr>
+<tr><td>byt 70 m²</td><td class="n">2 018 Kč</td><td class="n">~36 000 Kč</td></tr>
+<tr><td>rodinný dům</td><td class="n">3 969 Kč</td><td class="n">~140 000 Kč</td></tr>
+</tbody>
+<tbody><tr class="skupina"><th colspan="3">Kralupy nad Vltavou <span>úspora ze superhrubé ~69 000 Kč ročně</span></th></tr>
+<tr><td>byt 70 m²</td><td class="n">957 Kč</td><td class="n">~16 300 Kč</td></tr>
+<tr><td>rodinný dům</td><td class="n">1 882 Kč</td><td class="n">~36 000 Kč</td></tr>
+</tbody>
+<tbody><tr class="skupina"><th colspan="3">Most <span>úspora ze superhrubé ~66 000 Kč ročně</span></th></tr>
+<tr><td>byt 70 m²</td><td class="n">2 093 Kč</td><td class="n">~8 900 Kč</td></tr>
+<tr><td>rodinný dům</td><td class="n">4 116 Kč</td><td class="n">~36 600 Kč</td></tr>
+</tbody>
+</table>
 
 Rodinný dům má v příkladu 120 m² zastavěné plochy, dvě podlaží a pozemek 800 m². Částky po reformě jsou před odečtením slevy.
 
@@ -47,7 +54,7 @@ Nejvíc by daň vzrostla tam, kde jsou pozemky drahé. Pražský dům by platil 
 
 Proti dnešku jsou to velká čísla, ale dnes začínáme velmi nízko. Pražský byt by platil zhruba půl procenta své ceny ročně. Pro srovnání: v Dánsku platí majitel bydlení státu zhruba [0,4 % hodnoty nemovitosti](https://bomae.dk/en/home-buying-guides/property-tax-land-tax-property-value-tax-denmark) ročně a k tomu obci daň z pozemku.
 
-Sloupec „úspora ze superhrubé“ ukazuje, kolik ročně ušetřila zrušením superhrubé mzdy domácnost, kde pracují dva lidé s běžnou mzdou v daném kraji. V pěti případech ze šesti je úspora vyšší než nová daň, a to ještě před slevou. Víc by zaplatil jen velký dům na drahém pozemku v Praze.
+U každého města je uvedeno, kolik ročně ušetřila zrušením superhrubé mzdy domácnost, kde pracují dva lidé s běžnou mzdou v daném kraji. V pěti případech ze šesti je úspora vyšší než nová daň, a to ještě před slevou. Víc by zaplatil jen velký dům na drahém pozemku v Praze.
 
 Kdo žije sám, nebo je v důchodu, má úsporu ze zrušení superhrubé mzdy menší nebo žádnou. Proto je v návrhu sleva a možnost daň odložit, aby nikdo nemusel platit víc, než unese.
 

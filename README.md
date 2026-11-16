@@ -25,6 +25,15 @@ npm run build    # hotový web do složky dist/
 
 Texty v `[hranatých závorkách]` jsou místa, která je potřeba doplnit.
 
+### Dvě šablony témat
+
+V hlavičce tématu vyber `sablona`:
+
+- `navrhy` (výchozí): tělo souboru je „V čem je problém“, pod ním seznam `navrhy` (název, text, volitelný odkaz na příspěvek). Pro témata s konkrétními body, třeba Daně.
+- `text`: tělo souboru je „Jak to vidím“, bez návrhů. Pro obecná témata, třeba Finanční odpovědnost.
+
+`uvod` (věty pod nadpisem) je volitelný u obou šablon. Odkaz na jiné téma napiš v textu jako `[části o daních](/temata/dane/)`.
+
 ### Nový příspěvek
 
 Vytvoř `src/content/prispevky/nazev-prispevku.md`. Název souboru se stane adresou `/prispevky/nazev-prispevku/`.

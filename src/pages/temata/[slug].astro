@@ -13,6 +13,9 @@ const { Content } = await render(tema);
 const posts = (await getCollection('prispevky', ({ data }) => !data.draft && data.tema.id === tema.id))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const k = tema.data.klicoveCislo;
+const jenText = tema.data.sablona === 'text';
+const navrhy = jenText ? [] : tema.data.navrhy;
+const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
 ---
 <Base title={tema.data.title} description={tema.data.popis} active="Témata">
   <section class="page-head">
@@ -21,13 +24,15 @@ const k = tema.data.klicoveCislo;
         <p class="crumb in"><a href="/temata/">Témata</a> <span aria-hidden="true">/</span> {tema.data.title}</p>
         <span class="bar in" aria-hidden="true"></span>
         <h1 class="page-title in d1">{tema.data.title}</h1>
-        <p class="lead in d2">{tema.data.uvod}</p>
-        <nav class="anchors in d2" aria-label="Na této stránce">
-          <span>Na této stránce:</span>
-          <a href="#problem">V čem je problém</a>
-          {tema.data.navrhy.length > 0 && <a href="#navrhy">Co navrhuji</a>}
-          {posts.length > 0 && <a href="#prispevky">Příspěvky</a>}
-        </nav>
+        {tema.data.uvod && <p class="lead in d2">{tema.data.uvod}</p>}
+        {ukazatKotvy && (
+          <nav class="anchors in d2" aria-label="Na této stránce">
+            <span>Na této stránce:</span>
+            <a href="#problem">{jenText ? 'Jak to vidím' : 'V čem je problém'}</a>
+            {navrhy.length > 0 && <a href="#navrhy">Co navrhuji</a>}
+            {posts.length > 0 && <a href="#prispevky">Příspěvky</a>}
+          </nav>
+        )}
       </div>
       {k && (
         <aside class="keynum in d2" aria-label="Klíčové číslo">
@@ -42,8 +47,8 @@ const k = tema.data.klicoveCislo;
   <section id="problem" class="section">
     <div class="wrap split">
       <div class="split__side reveal">
-        <span class="label">Výchozí stav</span>
-        <h2 class="h2-sub">V čem je problém</h2>
+        <span class="label">{jenText ? 'Můj pohled' : 'Výchozí stav'}</span>
+        <h2 class="h2-sub">{jenText ? 'Jak to vidím' : 'V čem je problém'}</h2>
       </div>
       <div class="split__main prose problem">
         <Content />
@@ -51,7 +56,7 @@ const k = tema.data.klicoveCislo;
     </div>
   </section>
 
-  {tema.data.navrhy.length > 0 && (
+  {navrhy.length > 0 && (
     <section id="navrhy" class="section" style="padding-top: 0">
       <div class="wrap split">
         <div class="split__side reveal">
@@ -59,7 +64,7 @@ const k = tema.data.klicoveCislo;
           <h2 class="h2-sub">Co navrhuji</h2>
         </div>
         <div class="split__main rows-plain">
-          {tema.data.navrhy.map((n, i) => (
+          {navrhy.map((n, i) => (
             <div class="proposal reveal">
               <span class="proposal__num">{i + 1}</span>
               <div>

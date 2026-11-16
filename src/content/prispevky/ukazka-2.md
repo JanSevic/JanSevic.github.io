@@ -1,7 +1,6 @@
 ---
 # Ukázkový příspěvek – smaž ho, až napíšeš první skutečný.
 title: "[Ukázkový příspěvek 2: problém nebo otázka, kterou řeším]"
-date: 2026-10-20
 tema: skolstvi
 perex: "[místo pro perex: o čem příspěvek je a k čemu dojde, 1–2 věty]"
 # obrazek: ./obrazek.jpg   # volitelné, soubor ulož vedle tohoto .md

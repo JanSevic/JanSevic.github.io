@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { podlePoradi } from '../../site';
+
+// Přehled samostatných stránek k tématům, seskupený podle témat (ne podle data).
+const temata = (await getCollection('temata')).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection('prispevky', ({ data }) => !data.draft)).sort(podlePoradi);
+const skupiny = temata
+  .map((t) => ({ tema: t, posts: posts.filter((p) => p.data.tema.id === t.id) }))
+  .filter((g) => g.posts.length > 0);
+---
+<Base title="Příspěvky" active="Příspěvky">
+  <PageHead title="Příspěvky" lead="Podrobnější rozbory k tématům: věci, které se do shrnutí tématu nevejdou." />
+  <section class="section">
+    <div class="wrap groups">
+      {skupiny.length === 0 && <p class="lead">Zatím tu nic není.</p>}
+      {skupiny.map((g) => (
+        <div class="group reveal">
+          <a class="group__title" href={`/temata/${g.tema.id}/`}>{g.tema.data.title}</a>
+          <div class="rows">
+            {g.posts.map((p) => (
+              <a href={`/prispevky/${p.id}/`} class="row">
+                <span class="post">
+                  <h2>{p.data.title}</h2>
+                  <span class="muted">{p.data.perex}</span>
+                </span>
+                <span class="arr" aria-hidden="true">→</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .groups { display: flex; flex-direction: column; gap: clamp(48px, 6vw, 80px); }
+  .group { display: flex; flex-direction: column; gap: 20px; }
+  .group__title { font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+  .post { flex: 1 1 480px; display: flex; flex-direction: column; gap: 8px; }
+  .post h2 { font-size: clamp(28px, 3vw, 36px); line-height: 1.15; }
+  .arr { font-size: 24px; }
+</style>

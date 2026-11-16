@@ -42,3 +42,9 @@ export const formatDate = (d: Date) =>
 
 export const readingTime = (body = '') =>
   Math.max(1, Math.round(body.trim().split(/\s+/).length / 200));
+
+/** Řazení příspěvků (stránek k tématům): podle pole `poradi`, pak podle názvu. */
+export const podlePoradi = (
+  a: { data: { poradi: number; title: string } },
+  b: { data: { poradi: number; title: string } },
+) => a.data.poradi - b.data.poradi || a.data.title.localeCompare(b.data.title, 'cs');

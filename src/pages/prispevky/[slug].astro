@@ -2,19 +2,18 @@
 import { Image } from 'astro:assets';
 import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { formatDate, readingTime, site } from '../../site';
+import { podlePoradi, readingTime, site } from '../../site';
 import portret from '../../assets/portret.png';
 
 export async function getStaticPaths() {
-  const posts = (await getCollection('prispevky', ({ data }) => !data.draft))
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-  return posts.map((post, i) => ({
+  const posts = (await getCollection('prispevky', ({ data }) => !data.draft)).sort(podlePoradi);
+  return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+    props: { post, souvisejici: posts.filter((p) => p.id !== post.id && p.data.tema.id === post.data.tema.id) },
   }));
 }
 
-const { post, newer, older } = Astro.props;
+const { post, souvisejici } = Astro.props;
 const { Content } = await render(post);
 const tema = await getEntry(post.data.tema);
 const url = new URL(Astro.url.pathname, Astro.site).toString();
@@ -28,8 +27,6 @@ const share = {
     <header class="article__head">
       <div class="meta in">
         {tema && <a class="tag" href={`/temata/${tema.id}/`}>{tema.data.title}</a>}
-        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-        <span aria-hidden="true">·</span>
         <span>{readingTime(post.body)} min čtení</span>
       </div>
       <h1 class="in d1">{post.data.title}</h1>
@@ -65,9 +62,9 @@ const share = {
       </div>
     </aside>
 
-    <nav class="next" aria-label="Další příspěvky">
-      {older ? <a href={`/prispevky/${older.id}/`} class="row"><span class="muted small">← Předchozí příspěvek</span><span class="title">{older.data.title}</span></a> : <span></span>}
-      {newer && <a href={`/prispevky/${newer.id}/`} class="row right"><span class="muted small">Další příspěvek →</span><span class="title">{newer.data.title}</span></a>}
+    <nav class="next" aria-label="Související stránky">
+      {tema && <a href={`/temata/${tema.id}/`} class="row"><span class="muted small">← Zpět na téma</span><span class="title">{tema.data.title}</span></a>}
+      {souvisejici.map((p) => <a href={`/prispevky/${p.id}/`} class="row"><span class="muted small">Také k tématu</span><span class="title">{p.data.title}</span></a>)}
     </nav>
   </article>
 </Base>
@@ -104,7 +101,6 @@ const share = {
   .author__name { font-family: var(--font-display); font-weight: 600; font-size: 26px; }
   .next { max-width: 1040px; margin: clamp(56px, 7vw, 88px) auto 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
   .next .row { flex: 1 1 320px; flex-direction: column; align-items: flex-start; gap: 6px; padding: 20px 8px; border-top: 2px solid var(--ink); }
-  .next .right { align-items: flex-end; text-align: right; }
   .small { font-size: 14px; }
   .title { font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1.2; }
 </style>

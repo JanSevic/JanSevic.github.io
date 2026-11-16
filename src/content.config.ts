@@ -23,13 +23,15 @@ const temata = defineCollection({
   }),
 });
 
-// Příspěvky: každý patří k jednomu tématu.
+// Příspěvky: samostatné stránky k tématům (podrobný rozbor návrhu nebo otázky,
+// která se do shrnutí tématu nevejde). Nejsou to blogové zápisky, nemají datum.
 const prispevky = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/prispevky' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      date: z.coerce.date(),
+      /** Pořadí v rámci tématu (menší číslo = výš). */
+      poradi: z.number().default(100),
       tema: reference('temata'),
       perex: z.string(),
       obrazek: image().optional(),

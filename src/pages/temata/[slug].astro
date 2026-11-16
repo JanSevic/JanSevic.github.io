@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { formatDate } from '../../site';
+import { podlePoradi } from '../../site';
 
 export async function getStaticPaths() {
   const temata = (await getCollection('temata')).sort((a, b) => a.data.order - b.data.order);
@@ -10,10 +10,13 @@ export async function getStaticPaths() {
 
 const { tema, others } = Astro.props;
 const { Content } = await render(tema);
-const posts = (await getCollection('prispevky', ({ data }) => !data.draft && data.tema.id === tema.id))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const k = tema.data.klicoveCislo;
 const navrhy = tema.data.navrhy;
+const odkazovane = new Set(navrhy.map((n) => n.odkaz).filter(Boolean));
+// Stránky, na které už odkazuje některý návrh, se v „Podrobněji k tématu“ neopakují.
+const posts = (await getCollection('prispevky', ({ data }) => !data.draft && data.tema.id === tema.id))
+  .filter((p) => !odkazovane.has(p.id))
+  .sort(podlePoradi);
+const k = tema.data.klicoveCislo;
 const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
 ---
 <Base title={tema.data.title} description={tema.data.popis} active="Témata">
@@ -29,7 +32,7 @@ const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
             <span>Na této stránce:</span>
             <a href="#problem">Jak to vidím</a>
             {navrhy.length > 0 && <a href="#navrhy">Co navrhuji</a>}
-            {posts.length > 0 && <a href="#prispevky">Příspěvky</a>}
+            {posts.length > 0 && <a href="#prispevky">Podrobněji</a>}
           </nav>
         )}
       </div>
@@ -69,7 +72,7 @@ const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
               <div>
                 <h3>{n.nazev}</h3>
                 <p class="muted">{n.text}</p>
-                {n.odkaz && <a class="link-strong proposal__more" href={`/prispevky/${n.odkaz}/`}>Podrobně v příspěvku →</a>}
+                {n.odkaz && <a class="link-strong proposal__more" href={`/prispevky/${n.odkaz}/`}>Podrobně →</a>}
               </div>
             </div>
           ))}
@@ -82,13 +85,12 @@ const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
     <section id="prispevky" class="section section--sunken">
       <div class="wrap">
         <div class="section-head reveal">
-          <div><h2 class="h2-sub">Příspěvky k tématu</h2></div>
-          <a class="link-strong" href="/prispevky/">Všechny příspěvky →</a>
+          <div><h2 class="h2-sub">Podrobněji k tématu</h2></div>
+          <a class="link-strong" href="/prispevky/">Všechny stránky →</a>
         </div>
         <div class="rows">
           {posts.map((p) => (
             <a href={`/prispevky/${p.id}/`} class="row reveal">
-              <time class="date muted" datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
               <span class="post">
                 <h3>{p.data.title}</h3>
                 <span class="muted">{p.data.perex}</span>
@@ -120,7 +122,6 @@ const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
   .problem { margin: 0; max-width: none; }
   .rows-plain { border-bottom: 1px solid var(--line); }
   .proposal__more { display: inline-block; margin-top: 12px; }
-  .date { flex: 0 0 180px; font-size: 15px; }
   .post { flex: 1 1 480px; display: flex; flex-direction: column; gap: 8px; }
   .post h3 { font-size: 30px; line-height: 1.15; }
   .arr { font-size: 24px; }

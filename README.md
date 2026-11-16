@@ -27,17 +27,17 @@ Texty v `[hranatých závorkách]` jsou místa, která je potřeba doplnit.
 
 ### Téma
 
-Tělo souboru tématu je „Jak to vidím“. Pod ním může být seznam `navrhy` (název, text, volitelný `odkaz` na příspěvek s podrobným rozborem). Když návrhy nejsou, stránka je jen textová. `uvod` (věty pod nadpisem) je volitelný.
+Tělo souboru tématu je „Jak to vidím“. Pod ním může být seznam `navrhy` (název, text a `odkaz` na stránku s podrobným rozborem). Když návrhy nejsou, stránka je jen textová. `uvod` (věty pod nadpisem) je volitelný. Odkaz na stránku v textu: `[název](/prispevky/nazev-prispevku/)`.
 
-### Nový příspěvek
+### Nový příspěvek (stránka k tématu)
 
-Vytvoř `src/content/prispevky/nazev-prispevku.md`. Název souboru se stane adresou `/prispevky/nazev-prispevku/`.
+Příspěvky nejsou blog: jsou to samostatné stránky k tématům, třeba podrobný rozbor návrhu nebo otázka, která se do shrnutí tématu nevejde. Nemají datum. Vytvoř `src/content/prispevky/nazev-prispevku.md`. Název souboru se stane adresou `/prispevky/nazev-prispevku/`.
 
 ```md
 ---
 title: "Proč…"
-date: 2026-11-20
-tema: dane            # název souboru tématu bez .md
+tema: financni-odpovednost   # název souboru tématu bez .md
+poradi: 1                    # pořadí v rámci tématu (volitelné)
 perex: "Jedna až dvě věty."
 obrazek: ./obrazek.jpg   # volitelné
 draft: false             # true = nezveřejní se

@@ -3,14 +3,12 @@ import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 // Témata: jeden Markdown soubor na téma.
-// Šablona „navrhy“: tělo = „V čem je problém“ + seznam konkrétních návrhů.
-// Šablona „text“: tělo = „Jak to vidím“, bez návrhů.
+// Tělo souboru = „Jak to vidím“. Pod ním volitelně seznam návrhů; bez návrhů je stránka jen textová.
 const temata = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/temata' }),
   schema: z.object({
     title: z.string(),
     order: z.number(),
-    sablona: z.enum(['navrhy', 'text']).default('navrhy'),
     /** 1–2 věty do karty na úvodní stránce a do přehledu. */
     popis: z.string(),
     /** Úvodní věty pod nadpisem stránky tématu (volitelné). */

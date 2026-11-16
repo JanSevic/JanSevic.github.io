@@ -13,8 +13,7 @@ const { Content } = await render(tema);
 const posts = (await getCollection('prispevky', ({ data }) => !data.draft && data.tema.id === tema.id))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const k = tema.data.klicoveCislo;
-const jenText = tema.data.sablona === 'text';
-const navrhy = jenText ? [] : tema.data.navrhy;
+const navrhy = tema.data.navrhy;
 const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
 ---
 <Base title={tema.data.title} description={tema.data.popis} active="Témata">
@@ -28,7 +27,7 @@ const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
         {ukazatKotvy && (
           <nav class="anchors in d2" aria-label="Na této stránce">
             <span>Na této stránce:</span>
-            <a href="#problem">{jenText ? 'Jak to vidím' : 'V čem je problém'}</a>
+            <a href="#problem">Jak to vidím</a>
             {navrhy.length > 0 && <a href="#navrhy">Co navrhuji</a>}
             {posts.length > 0 && <a href="#prispevky">Příspěvky</a>}
           </nav>
@@ -47,8 +46,8 @@ const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
   <section id="problem" class="section">
     <div class="wrap split">
       <div class="split__side reveal">
-        <span class="label">{jenText ? 'Můj pohled' : 'Výchozí stav'}</span>
-        <h2 class="h2-sub">{jenText ? 'Jak to vidím' : 'V čem je problém'}</h2>
+        <span class="label">Můj pohled</span>
+        <h2 class="h2-sub">Jak to vidím</h2>
       </div>
       <div class="split__main prose problem">
         <Content />

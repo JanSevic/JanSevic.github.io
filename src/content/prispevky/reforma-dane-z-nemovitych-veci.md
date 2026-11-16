@@ -12,7 +12,7 @@ Představte si stejný rodinný dům ve dvou městech. V Praze 12 stojí metr st
 
 Jak je to možné? Daň se dnes platí skoro jen za stavbu, tedy za metry domu nebo bytu. Pozemek pod domem se nedaní vůbec a za zahradu se platí pár desítek korun. Počet metrů se pak vynásobí číslem podle velikosti obce a ještě číslem, které si určí obec sama. Kde nemovitost stojí a jakou má cenu, nehraje žádnou roli. Most si nastavil vyšší násobek než většina Prahy, a tak tam lidé platí víc.
 
-Daň navíc vybírá málo: kolem 23 miliard korun ročně. V poměru k HDP je to [méně než čtvrtina průměru EU](https://data.consilium.europa.eu/doc/document/ST-16801-2025-ADD-6/en/pdf).
+Daň navíc vybírá málo: kolem 23 miliard korun ročně. Na všech daních, které stát vybere, se podílí [jen 0,7 %, zatímco v EU v průměru 2,5 %](https://forbes.cz/danovy-system-paq-research/).
 
 ## Co navrhuji
 
@@ -32,7 +32,7 @@ Celkem by daň vybrala kolem 125 miliard korun ročně, zhruba o 100 miliard ví
 
 ## Kolik by kdo zaplatil
 
-| | dnes | po reformě | zrušení superhrubé mzdy ušetřilo |
+| | dnes | po reformě | úspora ze superhrubé |
 |---|---:|---:|---:|
 | Praha 12, byt 70 m² | 2 018 Kč | ~36 000 Kč | ~77 000 Kč |
 | Praha 12, rodinný dům | 3 969 Kč | ~140 000 Kč | ~77 000 Kč |
@@ -45,9 +45,9 @@ Rodinný dům má v příkladu 120 m² zastavěné plochy, dvě podlaží a poze
 
 Nejvíc by daň vzrostla tam, kde jsou pozemky drahé. Pražský dům by platil kolem 140 000 Kč ročně, protože samotný pozemek by i po poklesu cen stál kolem 8,7 milionu korun. Byt v Mostě by platil kolem 9 000 Kč.
 
-Proti dnešku jsou to velká čísla, ale dnes začínáme velmi nízko. Pražský byt by platil zhruba půl procenta své ceny ročně. Pro srovnání: v Dánsku platí majitel bydlení státu zhruba [0,4 % hodnoty nemovitosti](https://lex.dk/ejendomsv%C3%A6rdiskat) ročně a k tomu obci daň z pozemku.
+Proti dnešku jsou to velká čísla, ale dnes začínáme velmi nízko. Pražský byt by platil zhruba půl procenta své ceny ročně. Pro srovnání: v Dánsku platí majitel bydlení státu zhruba [0,4 % hodnoty nemovitosti](https://bomae.dk/en/home-buying-guides/property-tax-land-tax-property-value-tax-denmark) ročně a k tomu obci daň z pozemku.
 
-Poslední sloupec ukazuje, kolik ročně ušetřila zrušením superhrubé mzdy domácnost, kde pracují dva lidé s běžnou mzdou v daném kraji. V pěti případech ze šesti je úspora vyšší než nová daň, a to ještě před slevou. Víc by zaplatil jen velký dům na drahém pozemku v Praze.
+Sloupec „úspora ze superhrubé“ ukazuje, kolik ročně ušetřila zrušením superhrubé mzdy domácnost, kde pracují dva lidé s běžnou mzdou v daném kraji. V pěti případech ze šesti je úspora vyšší než nová daň, a to ještě před slevou. Víc by zaplatil jen velký dům na drahém pozemku v Praze.
 
 Kdo žije sám, nebo je v důchodu, má úsporu ze zrušení superhrubé mzdy menší nebo žádnou. Proto je v návrhu sleva a možnost daň odložit, aby nikdo nemusel platit víc, než unese.
 

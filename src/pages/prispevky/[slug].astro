@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { podlePoradi, readingTime, site } from '../../site';
+import { podlePoradi, site } from '../../site';
 import portret from '../../assets/portret.png';
 
 export async function getStaticPaths() {
@@ -27,7 +27,6 @@ const share = {
     <header class="article__head">
       <div class="meta in">
         {tema && <a class="tag" href={`/temata/${tema.id}/`}>{tema.data.title}</a>}
-        <span>{readingTime(post.body)} min čtení</span>
       </div>
       <h1 class="in d1">{post.data.title}</h1>
       <p class="lead in d2">{post.data.perex}</p>

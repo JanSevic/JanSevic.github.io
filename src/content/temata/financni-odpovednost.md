@@ -2,7 +2,7 @@
 title: Finanční odpovědnost
 order: 1
 navrhy:
-  - nazev: "Zdanit pozemky"
+  - nazev: "Reforma daně z nemovitých věcí"
     text: "Zvýšit daň z nemovitostí, hlavně z pozemků, a počítat ji podle polohy a územního plánu. Stavby daň zatíží jen malou částkou za m², práci majitele na pozemku vůbec. Každý má slevu na jednu nemovitost, a kdo má nízký příjem, může platbu odložit."
 popis: "Schodek státního rozpočtu je vážný problém. Samotné škrty ho nevyřeší, potřebujeme i reformu příjmů."
 ---

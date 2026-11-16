@@ -3,7 +3,13 @@ title: Finanční odpovědnost
 order: 1
 navrhy:
   - nazev: "Reforma daně z nemovitých věcí"
-    text: "Zvýšit daň z nemovitostí, hlavně z pozemků, a počítat ji podle polohy a územního plánu. Stavby daň zatíží jen malou částkou za m², práci majitele na pozemku vůbec. Každý má slevu na jednu nemovitost, a kdo má nízký příjem, může platbu odložit."
+    text: "Mnohonásobně zvýšit daň z pozemků a místo dnešního výpočtu ji navázat na cenové mapy. Ty budou vycházet z reálných cen pozemků v dané lokalitě, zohlední územní plán a budou se periodicky aktualizovat. Každý občan dostane pevnou slevu, podobně jako u daně z příjmu, takže běžné bydlení zatíží daň méně. Kdo daň zaplatit nemůže, může ji odložit jako dluh vázaný na pozemek."
+  - nazev: "Úprava spotřebních daní"
+    text: "Část spotřebních daní automaticky valorizovat, aby si daně udržely svůj účel a dál odrazovaly od nadměrné spotřeby. Zavést spotřební daň na cukr. Zrušit výjimku, díky které tiché víno spotřební daň neplatí."
+  - nazev: "Nižší daň z příjmu"
+    text: "Snížit daň z příjmu fyzických i právnických osob, tedy lidí i firem. Zvýšit slevu na poplatníka a zavést její automatickou valorizaci, aby její skutečná hodnota časem neklesala."
+  - nazev: "Reforma důchodového systému"
+    text: "Zvýšit sociální pojištění, a umožnit tak postupný přechod na fondový důchodový systém, ve kterém se na důchody předem spoří a peníze se investují. Reforma tak proběhne bez zvyšování státního dluhu."
 popis: "Schodek státního rozpočtu je vážný problém. Samotné škrty ho nevyřeší, potřebujeme i reformu příjmů."
 ---
 

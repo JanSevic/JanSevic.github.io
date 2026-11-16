@@ -4,6 +4,7 @@ order: 1
 navrhy:
   - nazev: "Reforma daně z nemovitých věcí"
     text: "Mnohonásobně zvýšit daň z pozemků a místo dnešního výpočtu ji navázat na cenové mapy. Ty budou vycházet z reálných cen pozemků v dané lokalitě, zohlední územní plán a budou se periodicky aktualizovat. Každý občan dostane pevnou slevu, podobně jako u daně z příjmu, takže běžné bydlení zatíží daň méně. Kdo daň zaplatit nemůže, může ji odložit jako dluh vázaný na pozemek."
+    odkaz: reforma-dane-z-nemovitych-veci
   - nazev: "Úprava spotřebních daní"
     text: "Část spotřebních daní automaticky valorizovat, aby si daně udržely svůj účel a dál odrazovaly od nadměrné spotřeby. Zavést spotřební daň na cukr. Zrušit výjimku, díky které tiché víno spotřební daň neplatí."
   - nazev: "Nižší daň z příjmu"

@@ -34,15 +34,15 @@ Celkem by daň vybrala kolem 125 miliard korun ročně, zhruba o 100 miliard ví
 
 <table class="srovnani">
 <thead><tr><th></th><th class="n">dnes</th><th class="n">po reformě</th></tr></thead>
-<tbody><tr class="skupina"><th colspan="3">Praha 12 <span>úspora ze superhrubé ~77 000 Kč ročně</span></th></tr>
+<tbody><tr class="skupina"><th colspan="3">Praha 12 <span>úspora ze zrušení superhrubé mzdy ~77 000 Kč ročně</span></th></tr>
 <tr><td>byt 70 m²</td><td class="n">2 018 Kč</td><td class="n">~36 000 Kč</td></tr>
 <tr><td>rodinný dům</td><td class="n">3 969 Kč</td><td class="n">~140 000 Kč</td></tr>
 </tbody>
-<tbody><tr class="skupina"><th colspan="3">Kralupy nad Vltavou <span>úspora ze superhrubé ~69 000 Kč ročně</span></th></tr>
+<tbody><tr class="skupina"><th colspan="3">Kralupy nad Vltavou <span>úspora ze zrušení superhrubé mzdy ~69 000 Kč ročně</span></th></tr>
 <tr><td>byt 70 m²</td><td class="n">957 Kč</td><td class="n">~16 300 Kč</td></tr>
 <tr><td>rodinný dům</td><td class="n">1 882 Kč</td><td class="n">~36 000 Kč</td></tr>
 </tbody>
-<tbody><tr class="skupina"><th colspan="3">Most <span>úspora ze superhrubé ~66 000 Kč ročně</span></th></tr>
+<tbody><tr class="skupina"><th colspan="3">Most <span>úspora ze zrušení superhrubé mzdy ~66 000 Kč ročně</span></th></tr>
 <tr><td>byt 70 m²</td><td class="n">2 093 Kč</td><td class="n">~8 900 Kč</td></tr>
 <tr><td>rodinný dům</td><td class="n">4 116 Kč</td><td class="n">~36 600 Kč</td></tr>
 </tbody>

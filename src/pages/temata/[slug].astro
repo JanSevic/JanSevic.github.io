@@ -11,11 +11,7 @@ export async function getStaticPaths() {
 const { tema, others } = Astro.props;
 const { Content } = await render(tema);
 const navrhy = tema.data.navrhy;
-const odkazovane = new Set(navrhy.map((n) => n.odkaz).filter(Boolean));
-// Stránky, na které už odkazuje některý návrh, se v „Podrobněji k tématu“ neopakují.
-const posts = (await getCollection('prispevky', ({ data }) => !data.draft && data.tema.id === tema.id))
-  .filter((p) => !odkazovane.has(p.id))
-  .sort(podlePoradi);
+const posts = (await getCollection('prispevky', ({ data }) => !data.draft && data.tema.id === tema.id)).sort(podlePoradi);
 const k = tema.data.klicoveCislo;
 const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
 ---

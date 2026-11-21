@@ -1,6 +1,6 @@
 // Stáhne z otevřených dat ČSÚ počet obyvatel Česka podle pohlaví a jednotek věku
 // (datová sada OBY02B) a uloží nejnovější stav do src/sim/data/stav.json.
-// Spouští se jednou měsíčně z GitHub Actions. Když se data nepodaří přečíst,
+// Spouští se jednou ročně z GitHub Actions (ČSÚ data vydává v polovině května). Když se data nepodaří přečíst,
 // skončí chybou a soubor nechá beze změny, takže web dál běží se starými daty.
 import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { createInterface } from 'node:readline';

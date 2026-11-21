@@ -164,6 +164,8 @@ $('b-play').addEventListener('click', () => {
   timer = setInterval(() => { if (Y >= END) { b.click(); return; } setYear(Y + 1); }, 120);
 });
 
+for (const el of document.querySelectorAll('.sim-start')) el.textContent = START;
+$('b-year').min = START; $('b-year').max = END;
 function render() { renderB(); }
 function recompute() { syncCtl(); R = project(P); render(); }
 RB = project(BASE);

@@ -2,6 +2,7 @@
 // Simulace počtu obyvatel Česka (kohortní model, výhled 50 let). Model a ovládání jsou v src/sim/.
 import model from '../sim/model.js?raw';
 import app from '../sim/app.js?raw';
+import stav from '../sim/data/stav.json';
 
 interface Props { nadpis?: boolean }
 const { nadpis = true } = Astro.props;
@@ -35,26 +36,26 @@ const slidery = (p: string) => `<div class="sim-ctl" data-ctl="${p}"></div>`;
       </div>
       <div>
         <h3 class="sim-h3" id="b-pyr-t"></h3>
-        <div class="sim-legend"><span><i class="k-box k-men"></i>Muži</span><span><i class="k-box k-women"></i>Ženy</span><span><i class="k-out k-out--ink"></i>Dnes (2025)</span></div>
+        <div class="sim-legend"><span><i class="k-box k-men"></i>Muži</span><span><i class="k-box k-women"></i>Ženy</span><span><i class="k-out k-out--ink"></i>Dnes (<span class="sim-start"></span>)</span></div>
         <div class="sim-play"><button class="chip" id="b-play" type="button" aria-pressed="false">Přehrát</button><input type="range" id="b-year" min="2025" max="2075" step="1" aria-label="Rok pyramidy"></div>
         <div class="sim-pyrhead"><span>Muži</span><span>Ženy</span></div>
         <div class="sim-fig sim-pyr" id="b-pyr"></div>
         <div class="sim-shares" id="b-shares"></div>
       </div>
       <details class="sim-method"><summary>Jak simulace počítá</summary><ul>
-        <li>Počet obyvatel mění porody, úmrtí a migrace. Zvolené hodnoty platí od roku 2025 po celých 50 let.</li>
+        <li>Počet obyvatel mění porody, úmrtí a migrace. Zvolené hodnoty platí od začátku simulace po celých 50 let. Výchozí věkové složení obyvatel je podle ČSÚ.</li>
         <li>Migrace je roční saldo: o kolik víc lidí se přistěhuje, než vystěhuje. Přistěhovalí jsou hlavně mladí dospělí (nejčastěji kolem 27 let), asi 12 % tvoří děti, 55 % muži. Ve Česku pak rodí a umírají jako ostatní.</li>
         <li>Přerušovaná čára je střední varianta projekce ČSÚ z roku 2023 (1,5 dítěte na ženu, saldo migrace 35 tisíc ročně), šedý pás sahá od nízké varianty (pokles plodnosti na 1,25 do roku 2050, migrace 25 tisíc) po vysokou (růst na 1,75, migrace 40 tisíc). Projekce vychází z dat do roku 2022, kdy se rodilo víc dětí: pro rok 2025 počítala s 90,6 tisíce narozených, skutečně se jich narodilo 77,6 tisíce. Další projekci ČSÚ vydá do konce roku 2028.</li>
         <li>Počet dětí na ženu je úhrnná plodnost: kolik dětí by žena měla, kdyby po celý život rodila jako ženy v daném roce. Kolem 2,1 se populace dlouhodobě udrží.</li>
         <li>První děti se rodí kolem zvoleného věku, druhé o zvolený rozestup později a každé další o 70 % rozestupu po předchozím. S výchozími hodnotami to dává průměrný věk matek 29,2 / 31,5 / 33,1 roku u prvního, druhého a třetího dítěte, jako uvádí ČSÚ. Rozestup je rozdíl průměrů, skutečný odstup sourozenců v jedné rodině bývá delší. Rozdělení na první, druhé a další děti odpovídá předpokladům ČSÚ.</li>
-        <li>Změna se projevuje postupně: zvolené hodnoty platí plně pro dívky, které v roce 2025 ještě nerodily. Ženy nad 30 let pokračují jako dnes, mezi tím se přechází plynule.</li>
+        <li>Změna se projevuje postupně: zvolené hodnoty platí plně pro dívky, které na začátku simulace ještě nerodily. Ženy nad 30 let pokračují jako dnes, mezi tím se přechází plynule.</li>
         <li>Naděje dožití je průměrný věk, kterého se dožije novorozenec. Roste podle projekce ČSÚ z roku 2023 (střední varianta), zvlášť pro muže a ženy. Riziko úmrtí roste s věkem zhruba exponenciálně (tzv. Gompertzův model).</li>
         <li>Výchozí hodnoty jsou podle ČSÚ za rok 2025: 1,28 dítěte na ženu, první dítě ve 29,2 letech, rozestup z průměrného věku matek u 1. a 2. dítěte a saldo migrace 42 tisíc. Naděje dožití roste podle projekce ČSÚ.</li>
       </ul></details>
     </div>
   </div>
 
-<script is:inline set:html={`{${model}\n${app}}`}></script>
+<script is:inline set:html={`{const STAV = ${JSON.stringify(stav)};\n${model}\n${app}}`}></script>
 
 <style is:global>
 

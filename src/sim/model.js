@@ -1,5 +1,7 @@
 // Kohortní projekce obyvatel bez migrace (roční kroky, věk 0–100+)
-const START = 2025, HORIZON = 50;
+// STAV = skutečné věkové složení z ČSÚ (src/sim/data/stav.json, aktualizuje se jednou týdně)
+const DATA = typeof STAV !== 'undefined' && STAV ? STAV : null;
+const START = DATA ? DATA.start : 2025, HORIZON = 50;
 // Projekce ČSÚ 2023 (výchozí stav 1. 1. 2023): počet obyvatel k 1. 1. podle variant
 const CSU = {
   low: [[2025, 10854564], [2026, 10778029], [2030, 10573836], [2035, 10446453], [2040, 10295866], [2045, 10138045], [2050, 9969969], [2055, 9772749], [2060, 9529474], [2065, 9243703], [2070, 8943336], [2075, 8658868], [2080, 8404642]],
@@ -22,6 +24,7 @@ const AG = [470, 560, 580, 550, 500, 530, 630, 730, 860, 890, 720, 660, 640, 640
 const FSH = [.487, .487, .487, .487, .487, .487, .487, .487, .487, .49, .5, .5, .51, .53, .55, .59, .63, .69];
 
 function initPop() {
+  if (DATA) return { M: Float64Array.from(DATA.muzi), F: Float64Array.from(DATA.zeny) };
   const tot = AG.reduce((s, v) => s + v, 0), k = 10909.5 / tot;
   const M = new Float64Array(101), F = new Float64Array(101);
   for (let g = 0; g < 17; g++) for (let i = 0; i < 5; i++) {

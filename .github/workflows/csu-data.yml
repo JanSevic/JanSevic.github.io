@@ -1,0 +1,32 @@
+name: Data ČSÚ pro simulaci
+
+# Jednou týdně stáhne aktuální věkové složení obyvatel z otevřených dat ČSÚ.
+# Když se data změní, uloží je do repozitáře a spustí nasazení webu.
+on:
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/csu-stav.mjs
+      - name: Uložit a nasadit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then echo "Data se nezměnila."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898482+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Aktualizovat data ČSÚ pro simulaci"
+          git push
+          gh workflow run deploy.yml --ref main

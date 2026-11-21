@@ -54,8 +54,11 @@ console.log('Ukazatele a období (posledních 8):', casy.slice(-8));
 
 // Nejnovější období: podle roku, při shodě dáme přednost stavu k 31. 12.
 const klic = (r) => { const y = +(String(r[cR]).match(/\d{4}/) || [0])[0]; const kd = /31\.\s*12|12-31/.test(r[cU] + r[cT]) ? 2 : /1\.\s*7|07-01/.test(r[cU] + r[cT]) ? 0 : 1; return y * 10 + kd; };
-const best = Math.max(...stat.map(klic));
-const vyb = stat.filter((r) => klic(r) === best);
+// Bereme jen období, za která jsou údaje po jednotlivých letech věku
+const vekove = stat.filter((r) => /^\s*\d+/.test(r[cV]) && /^(m|ž|z)/i.test(r[cP]));
+console.log('Pohlaví:', [...new Set(stat.map((r) => r[cP]))].join(', '), '| ukázka věků:', [...new Set(stat.map((r) => r[cV]))].slice(0, 6).join(', '), '…', [...new Set(stat.map((r) => r[cV]))].slice(-4).join(', '));
+const best = Math.max(...vekove.map(klic));
+const vyb = vekove.filter((r) => klic(r) === best);
 const M = new Array(101).fill(0), F = new Array(101).fill(0);
 for (const r of vyb) {
   const m = String(r[cV]).match(/^\s*(\d+)/); if (!m) continue; // přeskočí „celkem“ apod.

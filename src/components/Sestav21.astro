@@ -1,0 +1,145 @@
+---
+// „Sestav si svých 2,1“: rozdělení žen podle počtu dětí → průměrný počet dětí na ženu.
+---
+<div class="s21">
+  <blockquote class="s21-quote" id="s21-head"></blockquote>
+
+  <div class="s21-scen">
+    <div class="chips s21-presets" id="s21-presets"></div>
+  </div>
+
+  <div class="s21-grid">
+    <div class="s21-ctl" id="s21-ctl"></div>
+    <div class="s21-pic">
+      <p class="s21-pic__t">Sto žen a jejich děti</p>
+      <div class="s21-women" id="s21-women" role="img"></div>
+      <p class="s21-count" id="s21-count"></p>
+      <p class="muted s21-note">Každý čtverec je jedna žena, postavičky v něm jsou její děti. Stav 2025 ukazuje, kolik dětí by sto žen mělo za celý život, kdyby dál rodily tak málo jako v posledních letech.</p>
+    </div>
+  </div>
+
+  <details class="s21-method"><summary>Jak se to počítá</summary><ul>
+    <li>Průměrný počet dětí na ženu je součet: podíl žen s jedním dítětem krát jedna, plus podíl žen se dvěma dětmi krát dvě a tak dále.</li>
+    <li>Aby se počet obyvatel bez migrace dlouhodobě udržel, potřebuje každá žena v průměru přibližně 2,1 dítěte. Dvě děti nahradí rodiče, desetina navíc vyrovná to, že se rodí o něco víc chlapců než dívek a ne každý se dožije dospělosti.</li>
+    <li>Výchozí rozdělení odpovídá úhrnné plodnosti ČSÚ za rok 2025 (1,28 dítěte na ženu) podle pořadí dítěte: první dítě 0,62, druhé 0,48, třetí a další 0,18 dítěte na ženu. Ženy se třemi a více dětmi jsou rozdělené na tři, čtyři a pět a více dětí v poměru ze sčítání 2021. Ženy s pěti a více dětmi počítáme s 5,5 dítěte.</li>
+    <li>Podíl 38 % bezdětných není dnešní skutečnost, ale výhled: tolik žen by zůstalo bez dětí, kdyby dál rodily tak málo jako v posledních letech. U žen, které dospívaly v 70. a 80. letech, zůstalo bez dětí 5 až 7 %, u dnešních třicátnic a čtyřicátnic se odhaduje 16 až 18 %.</li>
+    <li>Stav „Průměr 2021–2025“ odpovídá průměrné úhrnné plodnosti těchto let (1,51 dítěte na ženu) podle pořadí dítěte z údajů ČSÚ, rozdělené stejným postupem jako stav 2025.</li>
+    <li>Stav „Kolik dětí ženy chtějí“ vychází z průzkumu Cesty k rodičovství (PřF UK a NMS, 2024): ze žen ve věku 18–49 let si 4 % nepřejí žádné dítě, 10 % jedno, 55 % dvě a 22 % tři nebo více dětí, ostatní nevědí. Ženy, které nevědí, jsou rozdělené jako ostatní. Ženy se třemi a více dětmi jsou rozdělené podle průzkumu CVVM z roku 2026, kde čtyři i pět dětí označilo za ideální po 1 % lidí.</li>
+  </ul></details>
+</div>
+
+<script is:inline>
+{
+  const K = [
+    { k: 0, t: 'Bez dětí' }, { k: 1, t: 'S jedním dítětem' }, { k: 2, t: 'Se dvěma dětmi' },
+    { k: 3, t: 'Se třemi dětmi' }, { k: 4, t: 'Se čtyřmi dětmi' }, { k: 5, t: 'S pěti a více dětmi' },
+  ];
+  // Česko 2025 podle ČSÚ (úhrnná plodnost podle pořadí): první dítě 0,62, druhé 0,48,
+  // třetí a další 0,18 dítěte na ženu. Třetí a další rozdělené podle sčítání 2021.
+  const CZ = [38, 14, 35, 10, 2, 1];
+  const W5 = 5.5; // ženy s pěti a více dětmi počítáme s 5,5 dítěte
+  const MIN0 = 0;
+  // Kolik dětí si ženy 18–49 let přejí (Cesty k rodičovství, PřF UK a NMS, 2024): žádné 4 %, jedno 10 %,
+  // dvě 55 %, tři a více 22 %, zbytek neví. Přepočteno bez „neví“; tři a více rozděleno podle CVVM 2026
+  // (čtyři i pět dětí po 1 %).
+  const CHTEJI = [4, 11, 61, 22, 1, 1];
+  // Průměr let 2021–2025 (úhrnná plodnost 1,51): první dítě 0,73, druhé 0,57, třetí a další 0,21
+  // dítěte na ženu (průměr hodnot ČSÚ podle pořadí; rok 2022 u třetích dětí odhadnut).
+  const PRUMER = [27, 15, 43, 12, 2, 1];
+  const PRESETS = [{ t: 'Stav 2025', p: CZ }, { t: 'Průměr 2021–2025', p: PRUMER }, { t: 'Kolik dětí ženy chtějí', p: CHTEJI }];
+  let P = [...CZ];
+  const $ = (id) => document.getElementById(id);
+  const nf = (x, d = 2) => x.toLocaleString('cs-CZ', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const fixSum = () => { const s = P.reduce((a, b) => a + b, 0); if (s !== 100) P[0] = Math.max(0, P[0] + 100 - s); };
+  fixSum();
+
+  $('s21-ctl').innerHTML = K.map((o) => `<div class="s21-sl"><label for="s21-${o.k}"><span>${o.t}</span><output id="s21-${o.k}-o"></output></label><input type="range" id="s21-${o.k}" data-k="${o.k}" min="0" max="100" step="1"></div>`).join('') +
+    '<p class="muted s21-sum">Podíly dávají dohromady vždy 100 %. Když přidáte ženám s více dětmi, ubere se hlavně ženám o jedno dítě méně. Když přidáte bezdětným, ubere se všem ostatním rovnoměrně.</p>';
+
+  // Změna jednoho podílu:
+  // – bez dětí: rozdíl se rozdělí na ostatní skupiny poměrně k jejich velikosti;
+  // – x dětí: přidání se bere hlavně ze skupiny s x−1 dětmi (pak x−2 …, nakonec z vyšších),
+  //   ubrání se přidá skupině s x−1 dětmi.
+  function setShare(k, v) {
+    v = Math.round(v);
+    if (k === 0) {
+      v = Math.max(MIN0, Math.min(100, v));
+      const rest = 100 - P[0], target = 100 - v;
+      P = P.map((x, i) => (i === 0 ? v : rest ? (x * target) / rest : target / 5));
+      P = P.map((x) => Math.round(x));
+      const d = 100 - P.reduce((a, b) => a + b, 0);
+      if (d) { let j = 1; P.forEach((x, i) => { if (i > 0 && x > P[j]) j = i; }); P[j] += d; }
+      return;
+    }
+    let d = Math.max(0, Math.min(100, v)) - P[k];
+    if (d < 0) { P[k] += d; P[k - 1] -= d; return; }
+    const order = [];
+    for (let i = k - 1; i >= 0; i--) order.push(i);
+    for (let i = k + 1; i < P.length; i++) order.push(i);
+    for (const i of order) {
+      const take = Math.min(d, P[i] - (i === 0 ? MIN0 : 0));
+      if (take > 0) { P[i] -= take; P[k] += take; d -= take; }
+      if (!d) break;
+    }
+  }
+
+  function render() {
+    const tfr = Math.round((P.reduce((s, p, i) => s + ((i === 5 ? W5 : i) * p) / 100, 0)) * 100 + 1e-6) / 100, gap = Math.round((2.1 - tfr) * 100) / 100;
+    $('s21-head').innerHTML = `Na jednu ženu vychází <em>${nf(tfr)} dítěte</em>. ` +
+      (Math.abs(gap) < 0.005 ? 'Přesně tolik, kolik populace potřebuje.' : gap > 0 ? `Do 2,1 chybí ${nf(gap)}.` : `To je o ${nf(-gap)} víc, než je potřeba.`);
+    for (const o of K) { const i = $(`s21-${o.k}`); i.value = P[o.k]; i.style.setProperty('--p', P[o.k] + '%'); $(`s21-${o.k}-o`).textContent = P[o.k] + ' %'; }
+    const same = (a) => a.every((v, i) => v === P[i]);
+    $('s21-presets').innerHTML = PRESETS.map((s, n) => `<button class="chip" type="button" data-p="${n}" aria-pressed="${same(s.p)}">${s.t}</button>`).join('');
+    let html = '';
+    const DITE = '<svg viewBox="0 0 10 14" aria-hidden="true"><circle cx="5" cy="3" r="2.7"/><path d="M.8 14v-3.6a4.2 4.2 0 0 1 8.4 0V14z"/></svg>';
+    P.forEach((p, k) => { for (let j = 0; j < p; j++) html += `<span class="w k${k}">${DITE.repeat(k)}</span>`; });
+    $('s21-women').innerHTML = html;
+    $('s21-women').setAttribute('aria-label', K.map((o) => `${o.t.toLowerCase()} ${P[o.k]} žen`).join(', '));
+    const sum = Math.round(P.reduce((a, p, k) => a + p * (k === 5 ? W5 : k), 0));
+    $('s21-count').innerHTML = `Dohromady <b>${sum} dětí</b>. Aby se počet obyvatel udržel, je jich potřeba přibližně 210.`;
+  }
+  document.addEventListener('input', (e) => { const k = e.target.dataset && e.target.id.startsWith('s21-') ? +e.target.dataset.k : NaN; if (Number.isNaN(k)) return; setShare(k, +e.target.value); render(); });
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-p]'); if (!b || !b.closest('.s21')) return; P = [...PRESETS[+b.dataset.p].p]; render(); });
+  render();
+}
+</script>
+
+<style is:global>
+  .s21 { max-width: var(--reading); margin: 0 auto; padding: 0 var(--gutter); box-sizing: content-box; display: grid; gap: 40px; }
+  .s21 > * { min-width: 0; }
+  .s21-quote { margin: 0; padding: 14px 0 14px 24px; border-left: 5px solid var(--mark); font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 3.2vw, 38px); line-height: 1.2; text-wrap: balance; }
+  .s21-quote em { font-style: normal; color: var(--accent); white-space: nowrap; }
+  .s21-scen { display: flex; flex-direction: column; gap: 12px; }
+  .s21-scen__t, .s21-pic__t { font-weight: 600; font-size: 17px; }
+  .s21-presets { flex-wrap: nowrap; overflow-x: auto; gap: 8px; padding: 2px; scrollbar-width: none; }
+  .s21-presets .chip { flex: none; padding: 8px 14px; font-size: 15px; white-space: nowrap; background: none; font-family: var(--font-sans); cursor: pointer; }
+  .s21 .chip[aria-pressed='true'] { background: var(--ink); color: #fff; }
+  .s21-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  .s21-ctl { display: grid; gap: 14px; }
+  .s21-sl label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-weight: 600; font-size: 17px; line-height: 1.3; }
+  .s21-sl label span { flex: 1 1 auto; min-width: 0; }
+  .s21-sl output { font-family: var(--font-display); font-weight: 600; font-size: 30px; line-height: 1; color: var(--accent); white-space: nowrap; }
+  .s21-sl input { -webkit-appearance: none; appearance: none; width: 100%; height: 36px; margin: 0; background: transparent; cursor: pointer; --p: 50%; }
+  .s21-sl input::-webkit-slider-runnable-track { height: 3px; background: linear-gradient(to right, var(--ink) var(--p), var(--line) var(--p)); }
+  .s21-sl input::-moz-range-track { height: 3px; background: var(--line); }
+  .s21-sl input::-moz-range-progress { height: 3px; background: var(--ink); }
+  .s21-sl input::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -8.5px; background: var(--ink); border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--ink); }
+  .s21-sl input::-moz-range-thumb { width: 14px; height: 14px; border-radius: 0; background: var(--ink); border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--ink); }
+  .s21-sl input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .s21-sum { font-size: 15px; margin-top: 4px; }
+  .s21-pic { display: flex; flex-direction: column; gap: 12px; }
+  .s21-women { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; }
+  .s21-women .w { aspect-ratio: 1; border: 1.5px solid var(--ink-muted); display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 1px; padding: 2px; overflow: hidden; }
+  .s21-women .w:has(svg) { background: var(--surface-sunken); border-color: var(--ink); }
+  .s21-women svg { width: 30%; height: auto; fill: var(--accent); }
+  .s21-women .k1 svg { width: 50%; } .s21-women .k2 svg { width: 40%; } .s21-women .k3 svg { width: 29%; } .s21-women .k4 svg { width: 33%; } .s21-women .k5 svg { width: 26%; }
+  .s21-count { font-size: 17px; }
+  .s21-count b { font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--accent); }
+  .s21 .chip, .s21-presets .chip { border-radius: 0; }
+  .s21-note { font-size: 15px; }
+  .s21-method { border-top: 1px solid var(--line); }
+  .s21-method summary { cursor: pointer; min-height: 56px; display: flex; align-items: center; font-weight: 600; }
+  .s21-method ul { max-width: 72ch; padding-left: 1.2em; color: var(--ink-muted); }
+  .s21-method li + li { margin-top: 8px; }
+  @media (max-width: 700px) { .s21-grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

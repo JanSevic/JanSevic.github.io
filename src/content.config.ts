@@ -38,7 +38,7 @@ const prispevky = defineCollection({
       obrazekPopis: z.string().optional(),
       draft: z.boolean().default(false),
       /** Interaktivní aplikace vložená pod text příspěvku. */
-      aplikace: z.enum(['simulace-populace']).optional(),
+      aplikace: z.enum(['simulace-populace', 'sestav-21']).optional(),
     }),
 });
 

@@ -1,5 +1,5 @@
 // Kohortní projekce obyvatel bez migrace (roční kroky, věk 0–100+)
-// STAV = skutečné věkové složení z ČSÚ (src/sim/data/stav.json, aktualizuje se jednou týdně)
+// STAV = skutečné věkové složení z ČSÚ (src/sim/data/stav.json, aktualizuje se jednou měsíčně)
 const DATA = typeof STAV !== 'undefined' && STAV ? STAV : null;
 const START = DATA ? DATA.start : 2025, HORIZON = 50;
 // Projekce ČSÚ 2023 (výchozí stav 1. 1. 2023): počet obyvatel k 1. 1. podle variant

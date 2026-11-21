@@ -27,9 +27,7 @@ const share = {
 <Base title={post.data.title} description={post.data.perex} active="Příspěvky">
   <article class="article">
     <header class="article__head">
-      <div class="meta in">
-        {tema && <a class="tag" href={`/temata/${tema.id}/`}>{tema.data.title}</a>}
-      </div>
+      {tema && <p class="crumb in"><a href="/temata/">Témata</a> <span aria-hidden="true">/</span> <a href={`/temata/${tema.id}/`}>{tema.data.title}</a></p>}
       <h1 class="in d1">{post.data.title}</h1>
       <p class="lead in d2">{post.data.perex}</p>
     </header>
@@ -89,7 +87,6 @@ const share = {
 <style>
   .article { padding: clamp(56px, 7vw, 104px) var(--gutter) clamp(56px, 7vw, 96px); }
   .article__head { max-width: var(--reading); margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
-  .article__head .meta { align-items: center; gap: 12px 20px; }
   h1 { font-size: clamp(48px, 6vw, 88px); line-height: 1.02; }
   .article__head .lead { max-width: none; }
   .article__figure { max-width: 1040px; margin: clamp(40px, 5vw, 64px) auto; display: flex; flex-direction: column; gap: 12px; }

@@ -1,9 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// ševic.eu = xn--evic-f6a.eu (punycode)
+// Hlavní doména jansevic.cz; ševic.eu a sevicovi.cz na ni přesměrovávají
 export default defineConfig({
-  site: 'https://xn--evic-f6a.eu',
+  site: 'https://jansevic.cz',
   trailingSlash: 'always',
   build: { format: 'directory' },
 });

@@ -1,4 +1,4 @@
-# ševic.eu
+# jansevic.cz
 
 Osobní web Jana Ševice v [Astru](https://astro.build). Design se řídí design systémem „ševic.eu – design systém“ na claude.ai. Písmo je Barlow Condensed, paleta grafit a akcent tlumená ocelová modrá.
 
@@ -61,6 +61,6 @@ Přechod z Hugo na Astro:
 1. Zkontroluj web lokálně (`npm run dev`).
 2. Na GitHubu přejmenuj větev `main` na `hugo` (záloha starého webu) a větev `astro` na `main` (Settings → Branches). Stane se z ní výchozí větev.
 3. V záložce Actions spusť ručně workflow „Nasazení webu na GitHub Pages“. Dál se už spouští samo po každém pushi do `main`.
-4. V Settings → Pages zůstává zdroj „GitHub Actions“ a vlastní doména ševic.eu.
+4. V Settings → Pages zůstává zdroj „GitHub Actions“ a vlastní doména jansevic.cz.
 
 Větve `astro` a `main` nemají společnou historii, proto se nesmí slučovat (merge), ale jen přejmenovat.

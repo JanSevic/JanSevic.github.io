@@ -1,10 +1,10 @@
 name: Data ČSÚ pro simulaci
 
-# Jednou ročně (25. května, asi týden po obvyklém vydání dat ČSÚ k 31. 12.) stáhne aktuální věkové složení obyvatel z otevřených dat ČSÚ.
+# Jednou ročně (1. června, asi dva týdny po obvyklém vydání dat ČSÚ k 31. 12.) stáhne aktuální věkové složení obyvatel z otevřených dat ČSÚ.
 # Když se data změní, uloží je do repozitáře a spustí nasazení webu.
 on:
   schedule:
-    - cron: '17 4 25 5 *'
+    - cron: '17 4 1 6 *'
   workflow_dispatch:
 
 permissions:

@@ -15,7 +15,7 @@ const COL = { men: '#4f8fe0', women: '#e5585b', acc: 'var(--accent)', base: '#9a
 
 const SL = [
   { k: 'a1', t: 'Věk ženy při prvním dítěti', min: 20, max: 36, step: 0.1, fmt: roky, h: 'Podle ČSÚ za rok 2025: 29,2 roku.' },
-  { k: 'd', t: 'Rozestup mezi dětmi', min: 1, max: 6, step: 0.1, fmt: roky, h: 'Rozdíl průměrného věku matek u prvního a druhého dítěte. Podle ČSÚ asi 2,3\u00a0roku.' },
+  { k: 'd', t: 'Rozestup mezi dětmi', min: 1, max: 6, step: 0.1, fmt: roky, h: 'Rozdíl průměrného věku matek u prvního a druhého dítěte. Podle ČSÚ přibližně 2,3\u00a0roku.' },
   { k: 'f', t: 'Počet dětí na ženu', min: 0.8, max: 3, step: 0.01, fmt: (x) => nf(x, 2), h: 'Podle ČSÚ za rok 2025: 1,28 (průměr let 2021–2025 byl 1,51). Při 2,1 se populace udrží.' },
   { k: 'mig', t: 'Roční saldo migrace', min: -20000, max: 100000, step: 1000, fmt: tisS, h: 'O kolik víc lidí se ročně přistěhuje, než vystěhuje. V roce 2025 to bylo 42\u00a0tisíc, projekce ČSÚ počítá s 35\u00a0tisíci.' },
 ];

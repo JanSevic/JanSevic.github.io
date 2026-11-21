@@ -103,7 +103,7 @@ const ukazatKotvy = navrhy.length > 0 || posts.length > 0;
     <div class="wrap others reveal">
       <span class="others__title">Další témata</span>
       <div class="chips">
-        {others.map((t) => <a class="chip" href={`/temata/${t.id}/`}>{t.data.title}</a>)}
+        {others.map((t) => <a class="tag" href={`/temata/${t.id}/`}>{t.data.title}</a>)}
       </div>
     </div>
   </section>

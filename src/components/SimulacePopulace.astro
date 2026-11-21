@@ -58,6 +58,7 @@ const slidery = (p: string) => `<div class="sim-ctl" data-ctl="${p}"></div>`;
 <script is:inline set:html={`{const STAV = ${JSON.stringify(stav)};\n${model}\n${app}}`}></script>
 
 <style is:global>
+  .sim .chip { border-radius: 0; }
 
   /* ovládání */
   .sim-ctl { display: grid; gap: 26px; }

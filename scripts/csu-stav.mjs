@@ -3,6 +3,8 @@
 // Spouští se jednou týdně z GitHub Actions. Když se data nepodaří přečíst,
 // skončí chybou a soubor nechá beze změny, takže web dál běží se starými daty.
 import { writeFileSync, readFileSync, existsSync } from 'node:fs';
+import { createInterface } from 'node:readline';
+import { Readable } from 'node:stream';
 
 const SRC = 'https://data.csu.gov.cz/opendata/sady/OBY02B/distribuce/csv';
 const OUT = new URL('../src/sim/data/stav.json', import.meta.url);
@@ -21,16 +23,23 @@ function parseCsv(text) {
   return rows;
 }
 
+// Soubor má stovky MB (všechna území a roky), čteme ho proto po řádcích
+// a necháváme jen řádky za celé Česko.
 const res = await fetch(SRC);
 if (!res.ok) throw new Error(`ČSÚ vrátil ${res.status}`);
-const rows = parseCsv((await res.text()).replace(/^﻿/, ''));
-const head = rows.shift();
+let head = null; const rows = []; let n = 0;
+for await (const line of createInterface({ input: Readable.fromWeb(res.body), crlfDelay: Infinity })) {
+  if (!head) { head = parseCsv(line.replace(/^\uFEFF/, ''))[0]; continue; }
+  n++;
+  if (n <= 3) console.log('Řádek:', line);
+  if (line.includes('Česk') || line.includes('ČR')) rows.push(parseCsv(line)[0]);
+}
+console.log('Řádků celkem:', n, 'z toho s Českem:', rows.length);
 const col = (name) => { const i = head.indexOf(name); if (i < 0) throw new Error(`Chybí sloupec ${name}; hlavička: ${head.join(' | ')}`); return i; };
 const cU = col('Ukazatel'), cP = col('Pohlaví'), cV = col('Věk (roky)'), cR = col('Rok'), cT = col('CasRB'), cH = col('Hodnota');
 const CESKO = /^(Česko|Česká republika|ČR)$/;
 
 console.log('Hlavička:', head.join(' | '));
-console.log('Ukázka:', rows.slice(0, 3).map((r) => r.join(' | ')).join('\n'));
 
 // Řádky za celý stát: některá z územních buněk je „Česko“; stejný údaj může být v souboru
 // víckrát (v různých územních členěních), proto každou kombinaci bereme jen jednou.

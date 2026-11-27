@@ -1,6 +1,6 @@
 ---
 title: Pokles porodnosti
-order: 4
+order: 3
 popis: "Většina lidí si přeje dvě děti, ale stále méně se jim to daří."
 uvod: "Pokles porodnosti není jen ekonomický problém. Jde i o dlouhodobé přežití společnosti."
 klicoveCislo:

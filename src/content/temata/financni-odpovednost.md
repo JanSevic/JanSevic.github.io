@@ -10,7 +10,7 @@ navrhy:
   - nazev: "Nižší daň z příjmu"
     text: "Snížit daň z příjmu fyzických i právnických osob, tedy lidí i firem. Zvýšit slevu na poplatníka a zavést její automatickou valorizaci, aby její skutečná hodnota časem neklesala."
   - nazev: "Reforma důchodového systému"
-    text: "Zvýšit sociální pojištění, a umožnit tak postupný přechod na fondový důchodový systém, ve kterém se na důchody předem spoří a peníze se investují. Reforma tak proběhne bez zvyšování státního dluhu."
+    text: "Umožnit postupný přechod na fondový důchodový systém, ve kterém se na důchody předem spoří a peníze se investují."
 popis: "Schodek státního rozpočtu je vážný problém. Samotné škrty ho nevyřeší, potřebujeme i reformu příjmů."
 ---
 
